@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.klnet.owner">
+   <!-- <resultMap type="com.example.domain.DemoDTO" id="demoDTO">
+      <result column="test_column" property="testColumn"/>
+   </resultMap> -->
+
+
+	<select id="selectIsoPort" resultType="string">
+		select iso_port_code from own_vsl_sch_iso_port_code
+	</select>
+
+	<select id="selectPostgresqlToOracle" resultType="string">
+		select sf_postgresql_to_oracle()
+	</select>
+	
+	<select id="selectPostgresqlFromOracle" resultType="string">
+		select sf_postgresql_from_oracle()
+	</select>
+	<select id="selectPostgresqlFromOracle2" resultType="string">
+		select sf_postgresql_from_oracle2()
+	</select>
+	
+	<select id="selectPostgresqlThread" resultType="string">
+		select sf_postgresql_thread()
+	</select>
+<!-- 	
+    <select id="selectPostgresqlFromOracle" statementType="CALLABLE">
+        { call sp_postgresql_from_oracle() }
+    </select>
+	
+	
+    <select id="selectPostgresqlFromOracle2" statementType="CALLABLE">
+        { call sp_postgresql_from_oracle2() }
+    </select>
+-->
+<!-- 	
+	<parameterMap id="paramMap" type="java.util.HashMap">
+		<parameter property="carrier_code" javaType="java.lang.String" jdbcType="VARCHAR" mode="IN"/>
+		<parameter property="doc_name" javaType="java.lang.String" jdbcType="VARCHAR" mode="IN"/>
+	</parameterMap>
+		
+	<select id="selectPostgresqlFromOracle" statementType="CALLABLE">
+        select sp_postgresql_from_oracle()
+    </select>
+ -->
+</mapper>

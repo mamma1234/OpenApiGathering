@@ -1,0 +1,30 @@
+#spring.datasource.url=jdbc:oracle:thin:@(DESCRIPTION =(ADDRESS_LIST =(ADDRESS = (PROTOCOL = TCP)(HOST = 172.21.1.202)(PORT = 7527))(ADDRESS = (PROTOCOL = TCP)(HOST = 172.21.1.201)(PORT = 7527)))(CONNECT_DATA =(SERVICE_NAME = ORAKLDB)(SERVER = DEDICATED)))
+#spring.datasource.url=jdbc:oracle:thin:@(DESCRIPTION = (ADDRESS_LIST = (ADDRESS = (PROTOCOL = TCP)(HOST = 172.19.1.103)(PORT = 7527)))(CONNECT_DATA = (SERVICE_NAME = orakldb)))
+#spring.datasource.username=mfedi
+#spring.datasource.password=vmflwma_1
+#spring.datasource.driver-class-name=oracle.jdbc.driver.OracleDriver
+
+
+
+#spring.db1.datasource.url=jdbc:postgresql://172.19.1.22:5432/dev
+spring.db1.datasource.url=jdbc:postgresql://172.19.1.22:5432/owner
+#spring.db1.datasource.url=jdbc:postgresql://172.21.1.199:5432/owner
+spring.db1.datasource.username=owner
+spring.db1.datasource.password=!ghkwn_20
+spring.db1.datasource.driver-class-name=org.postgresql.Driver
+spring.db1.datasource.test-on-borrow=true
+spring.db1.datasource.validation-query=SELECT 1;
+spring.db1.datasource.validation-interval=30000
+#spring.db1.datasource.remove-abandoned=true
+#spring.db1.datasource.remove-abandoned-timeout=60
+spring.db1.datasource.test-while-idle=true
+spring.db1.datasource.time-between-eviction-runs-millis=60000
+
+
+
+#spring.db2.datasource.url=jdbc:oracle:thin:@(DESCRIPTION =(ADDRESS_LIST =(ADDRESS = (PROTOCOL = TCP)(HOST = 172.21.1.202)(PORT = 7527))(ADDRESS = (PROTOCOL = TCP)(HOST = 172.21.1.201)(PORT = 7527)))(CONNECT_DATA =(SERVICE_NAME = ORAKLDB)(SERVER = DEDICATED)))
+spring.db2.datasource.url=jdbc:oracle:thin:@(DESCRIPTION = (ADDRESS_LIST = (ADDRESS = (PROTOCOL = TCP)(HOST = 172.19.1.103)(PORT = 7527)))(CONNECT_DATA = (SERVICE_NAME = orakldb)))
+spring.db2.datasource.username=mfedi
+spring.db2.datasource.password=vmflwma_1
+spring.db2.datasource.driver-class-name=oracle.jdbc.driver.OracleDriver
+

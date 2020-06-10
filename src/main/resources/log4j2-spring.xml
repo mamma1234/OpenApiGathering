@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration monitorInterval="60">
+    <Properties>
+        <Property name="log-path">applogs</Property>
+    </Properties>
+    <Appenders>
+        <Console name="Console-Appender" target="SYSTEM_OUT">
+            <PatternLayout>
+                <pattern>
+                    [%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n
+                </pattern>>
+            </PatternLayout>
+        </Console>
+        <File name="App-File-Appender" fileName="${log-path}/app_log.log" >
+            <PatternLayout>
+                <pattern>
+                    [%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n
+                </pattern>
+            </PatternLayout>
+        </File>
+        <!-- 
+        <File name="App-File-Appender2" fileName="C:/log/app_log.log" >
+            <PatternLayout>
+                <pattern>
+                    [%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n
+                </pattern>
+            </PatternLayout>
+        </File>
+ 		-->        
+        <File name="SpringBoot-File-Appender" fileName="${log-path}/springboot_log.log" >
+            <PatternLayout>
+                <pattern>
+                    [%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n
+                </pattern>
+            </PatternLayout>
+        </File>
+  		<RollingFile name="In-Rolling-File-Appender"  fileName="${log-path}/in_daily_log.log"  filePattern="${log-path}/in_daily_log.log.%d{yyyy-MM-dd}" append="true">
+            <PatternLayout>
+                <pattern>
+                    [%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n
+                </pattern>
+            </PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+			</Policies>
+		</RollingFile>        
+  		<RollingFile name="Out-Rolling-File-Appender"  fileName="${log-path}/out_daily_log.log"  filePattern="${log-path}/out_daily_log.log.%d{yyyy-MM-dd}" append="true">
+            <PatternLayout>
+                <pattern>
+                    [%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n
+                </pattern>
+            </PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+			</Policies>
+		</RollingFile>        
+    </Appenders>
+    <Loggers>
+        <Logger name="org" level="info" additivity="false">
+            <AppenderRef ref="SpringBoot-File-Appender"/>
+            <AppenderRef ref="Console-Appender"/>
+        </Logger>
+        <Logger name="com.klnet" level="info" additivity="false">
+        	<AppenderRef ref="SpringBoot-File-Appender"/>
+            <!-- <AppenderRef ref="App-File-Appender"/> -->
+            <AppenderRef ref="Console-Appender"/>
+         </Logger>
+        <Logger name="com.klnet.owner" level="info" additivity="false">
+            <AppenderRef ref="In-Rolling-File-Appender"/>
+            <AppenderRef ref="Console-Appender"/>
+         </Logger>
+         <!-- 
+        <Logger name="com.klnet.kmcs" level="info" additivity="false">
+            <AppenderRef ref="Out-Rolling-File-Appender"/>
+            <AppenderRef ref="Console-Appender"/>
+         </Logger>
+		-->
+        <Root>
+            <AppenderRef ref="Console-Appender"/>
+        </Root>
+    </Loggers>
+</Configuration>

@@ -1,0 +1,18 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.klnet.database.Db1DatabaseConfig",
+      "name": "spring.db1.datasource",
+      "sourceMethod": "db1DataSource()",
+      "type": "javax.sql.DataSource"
+    },
+    {
+      "sourceType": "com.klnet.database.Db2DatabaseConfig",
+      "name": "spring.db2.datasource",
+      "sourceMethod": "db2DataSource()",
+      "type": "javax.sql.DataSource"
+    }
+  ],
+  "properties": []
+}

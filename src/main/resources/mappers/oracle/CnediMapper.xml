@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.klnet.cnedi">
+   <!-- <resultMap type="com.example.domain.DemoDTO" id="demoDTO">
+      <result column="test_column" property="testColumn"/>
+   </resultMap> -->
+
+
+	<select id="selectRequestCntr" resultType="string">
+		select cntr_no from CNEDI.OWN_CHARGE_REQUEST
+	</select>
+ 
+ 
+ 
+	<resultMap id="resMap" type="java.util.HashMap">
+		<result property="cargo_mt_no"  		column="cargo_mt_no" 	jdbcType="VARCHAR" />
+		<result property="mrn"  				column="mrn" 			jdbcType="VARCHAR" />
+		<result property="msn"  				column="msn" 			jdbcType="VARCHAR" />
+		<result property="hsn"  				column="hsn" 			jdbcType="VARCHAR" />
+		<result property="mbl_no"  				column="mbl_no" 		jdbcType="VARCHAR" />
+		<result property="cntr_no"  			column="cntr_no" 		jdbcType="VARCHAR"  />
+		<result property="customs_line_code" 	column="customs_line_code" 	jdbcType="VARCHAR" />
+		<result property="retry_copino_key"  	column="retry_copino_key" 	jdbcType="VARCHAR" />
+		<result property="customs_send_yn"  	column="customs_send_yn" 	jdbcType="VARCHAR" />
+		<result property="bl_type"  			column="bl_type" 			jdbcType="VARCHAR" />
+		<result property="loc_ch_type"  		column="loc_ch_type" 		jdbcType="VARCHAR" />
+	</resultMap>
+
+
+   <select id="svcStatus" resultType="int">
+		 select MFEDI.SF_DO_MAPOUT('EBIZ-SCHEDULE', sys_context('userenv', 'host', 15)) from dual
+   </select>  
+
+   <select id="svcStatus2" resultType="int">
+		 select MFEDI.SF_DO_MAPOUT('EBIZ-SCHEDULE', #{hostname}) from dual
+   </select>  
+
+
+   <select id="svcStatusCheck" resultType="string">
+		 select sys_context('userenv', 'host', 15) from dual
+   </select>  
+
+   <select id="svcStatusCheck2" resultType="string">
+		 select sys_context('userenv', 'HOST') from dual
+   </select>  
+
+	<parameterMap id="paramMap" type="java.util.HashMap">
+		<parameter property="carrier_code" javaType="java.lang.String" jdbcType="VARCHAR" mode="IN"/>
+		<parameter property="doc_name" javaType="java.lang.String" jdbcType="VARCHAR" mode="IN"/>
+	</parameterMap>
+	
+    <select id="ebizFlowThread" statementType="CALLABLE"  parameterMap="paramMap">
+        { CALL MFEDI.SP_TCS_FLOW_THREAD(?, ?) }
+    </select>
+    	
+    <select id="mapinCnediThread" statementType="CALLABLE">
+        { CALL CNEDI.SP_EDI_IN_CNEDI_THREAD }
+    </select>
+        	
+    <select id="mapoutCnediThread" statementType="CALLABLE">
+        { CALL CNEDI.SP_EDI_OUT_CNEDI_THREAD }
+    </select>
+
+	
+	
+    <select id="chargeFlowThread" statementType="CALLABLE">
+        { CALL CNEDI.SP_EDI_IN_CNEDI_THREAD }
+    </select>    
+
+    <select id="ownerFromMfcsFlowThread" statementType="CALLABLE">
+        { CALL CNEDI.SP_OWNER_FROM_MFCS_FLOW_THREAD }
+    </select>    
+            	
+
+   <!-- <select id="getTargetCargoOpenApiAutoList" resultMap="resMap"> -->
+   <select id="getTcsFlowThreadList" resultType="hashmap">
+   		/*+ getTargetCargoOpenApiAutoList[관리대상조회(자동)] */
+   		<![CDATA[   
+        SELECT 
+		    FLOW_ID, ROUTE, STATUS, 
+		    COARRI_VESSEL_CODE, COARRI_TERMINAL_REF_NO, COARRI_TERMIANL, 
+		    COARRI_CONTAINER_NO, CODECO_IN_OUT_TIME, CODECO_CONTAINER_NO, 
+		    CODECO_TERMINAL_TYPE, CODECO_INOUT
+		FROM MFEDI.TCS_FLOW_THREAD
+		WHERE STATUS = 'T'
+		AND FLOW_ID > TO_CHAR(SYSDATE - 7, 'YYYYMMDD')
+		AND ROWNUM < 11
+		ORDER BY 1
+		]]>
+   </select>
+
+   <update id="setTcsFlowThreadClear" parameterType="java.util.HashMap">
+   		/*+ setTcsFlowThreadClear */
+   		<![CDATA[     		
+		UPDATE MFEDI.TCS_FLOW_THREAD
+		SET STATUS = 'Y'
+		WHERE MRN = #{mrn}
+		  AND FLOW_ID = #{flow_id}
+		]]>
+   </update>
+   
+</mapper>
