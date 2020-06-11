@@ -2,15 +2,15 @@
   "hints": [],
   "groups": [
     {
-      "sourceType": "com.klnet.database.Db1DatabaseConfig",
+      "sourceType": "com.klnet.application.Db1DatabaseConfig",
       "name": "spring.db1.datasource",
-      "sourceMethod": "db1DataSource()",
+      "sourceMethod": "public javax.sql.DataSource db1DataSource() ",
       "type": "javax.sql.DataSource"
     },
     {
-      "sourceType": "com.klnet.database.Db2DatabaseConfig",
+      "sourceType": "com.klnet.application.Db2DatabaseConfig",
       "name": "spring.db2.datasource",
-      "sourceMethod": "db2DataSource()",
+      "sourceMethod": "public javax.sql.DataSource db2DataSource() ",
       "type": "javax.sql.DataSource"
     }
   ],

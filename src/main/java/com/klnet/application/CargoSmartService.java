@@ -3,18 +3,23 @@ package com.klnet.application;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
-
-import javax.sql.DataSource;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.boot.json.JsonParser;
+import org.springframework.boot.json.JsonParserFactory;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
+
+
+//import io.swagger.models.Model;
+//import io.swagger.models.Swagger;
+//import io.swagger.parser.SwaggerParser;
 
 //@Configuration
 @Component
@@ -32,35 +37,21 @@ public class CargoSmartService {
 	private String prosAppKeyCOSU;
 	@Value("${cargosmart.url.schedules}")
 	private String prosUrlSchedules;
-	@Value("${cargosmart.url.cargoes}")
-	private String prosUrlCargoes;
+	@Value("${cargosmart.url.tracking}")
+	private String prosUrlTracking;
 	
 	
-	
-//	@ConfigurationProperties(prefix="cargosmart")
-//	public void cargosmart() {
-//		System.out.println("set....");
-//		String appKey;
-//	}
-	
-	
-	
-//	public void appKey(String appKey) {
-//		System.out.println("appKey=" + appKey);
-//	}
-
-
 	/*
 	 * https://apis.cargosmart.com/openapi/schedules/routeschedules/COSU?appKey=69338670-9c07-11ea-ae83-7956f3992d4c&porID=KRPUS&fndID=USLAX
 	 * https://apis.cargosmart.com/openapi/cargoes/tracking/COSU?appKey=69338670-9c07-11ea-ae83-7956f3992d4c&cntrNumber=FCIU5812619&scacCode=COSU 
 	 */
 	
 			
-			
 	@Scheduled(fixedDelay = 1000 * 60 * 2, initialDelay = 1000)
-	public void selectPostgresqlToOracle() throws InterruptedException {
+	public void selectCargoTracking() throws InterruptedException {
 
-		System.out.println(prosAppKeyCOSU);
+		System.out.println(this.prosAppKeyCOSU);
+		System.out.println(this.prosUrlTracking);
 		
 		Calendar calendar = new GregorianCalendar();
 
@@ -72,10 +63,255 @@ public class CargoSmartService {
 
 		logger.info("START Postgressql To Oracle " + hour + ":" + minute + ":" + second + "." + millisecond);
 
-		// String ret = ownerDAO.selectPostgresqlToOracle();
 
+		String url=this.prosUrlTracking+"/" + "COSU" + "?appKey=" +this.prosAppKeyCOSU + "&scacCode=COSU" + "&cntrNumber=FCIU5812619";
+				
+		
+		logger.info(url);
+//		RestTemplate restTemplate = new RestTemplate();
+//		String resp = restTemplate.getForObject(url, String.class);
+		
+		String resp = "{\"containerDetail\":{\"_package\":{\"pieceCount\":80,\"pieceCountUnit\":\"Drum\"},\"containerNumber\":{\"CSContainerSizeType\":\"\",\"carrCntrSizeType\":\"\",\"containerCheckDigit\":\"9\",\"containerNumber\":\"FCIU581261\",\"grossWeight\":{\"weight\":21920,\"weightUnit\":{\"value\":\"KGS\"}},\"haulage\":null,\"isSOC\":false,\"seal\":[],\"trafficMode\":null},\"detentionAndDemurrage\":null,\"doorDelivery\":[],\"event\":[{\"CSEvent\":{\"CSEventCode\":\"CS070\",\"dimentionType\":\"Port\",\"dimentionValue\":\"FirstPOL\",\"estActIndicator\":\"A\"},\"carrEventCode\":\"ssm_vsl_dep_first_pol\",\"eventDT\":{\"GMT\":{\"calendarType\":\"gregory\",\"firstDayOfWeek\":1,\"gregorianChange\":{\"date\":15,\"day\":5,\"hours\":0,\"minutes\":0,\"month\":9,\"seconds\":0,\"time\":-12219292800000,\"timezoneOffset\":0,\"year\":-318},\"lenient\":true,\"minimalDaysInFirstWeek\":1,\"time\":{\"date\":15,\"day\":5,\"hours\":0,\"minutes\":9,\"month\":4,\"seconds\":35,\"time\":1589501375000,\"timezoneOffset\":0,\"year\":120},\"timeInMillis\":1589501375000,\"timeZone\":{\"DSTSavings\":0,\"ID\":\"GMT\",\"dirty\":false,\"displayName\":\"Greenwich Mean Time\",\"lastRuleInstance\":null,\"rawOffset\":0},\"weekDateSupported\":true,\"weekYear\":2020,\"weeksInWeekYear\":52},\"locDT\":{\"CSTimeZone\":\"KRT\",\"_value\":{\"calendarType\":\"gregory\",\"firstDayOfWeek\":1,\"gregorianChange\":{\"date\":15,\"day\":5,\"hours\":0,\"minutes\":0,\"month\":9,\"seconds\":0,\"time\":-12219292800000,\"timezoneOffset\":0,\"year\":-318},\"lenient\":true,\"minimalDaysInFirstWeek\":1,\"time\":{\"date\":15,\"day\":5,\"hours\":9,\"minutes\":9,\"month\":4,\"seconds\":35,\"time\":1589533775000,\"timezoneOffset\":0,\"year\":120},\"timeInMillis\":1589533775000,\"timeZone\":{\"DSTSavings\":0,\"ID\":\"GMT\",\"dirty\":false,\"displayName\":\"Greenwich Mean Time\",\"lastRuleInstance\":null,\"rawOffset\":0},\"weekDateSupported\":true,\"weekYear\":2020,\"weeksInWeekYear\":52},\"timeZone\":\"\"}},\"eventDescription\":\"\",\"eventReceivedDT\":{\"GMT\":{\"calendarType\":\"gregory\",\"firstDayOfWeek\":1,\"gregorianChange\":{\"date\":15,\"day\":5,\"hours\":0,\"minutes\":0,\"month\":9,\"seconds\":0,\"time\":-12219292800000,\"timezoneOffset\":0,\"year\":-318},\"lenient\":true,\"minimalDaysInFirstWeek\":1,\"time\":{\"date\":15,\"day\":5,\"hours\":0,\"minutes\":27,\"month\":4,\"seconds\":46,\"time\":1589502466000,\"timezoneOffset\":0,\"year\":120},\"timeInMillis\":1589502466000,\"timeZone\":{\"DSTSavings\":0,\"ID\":\"GMT\",\"dirty\":false,\"displayName\":\"Greenwich Mean Time\",\"lastRuleInstance\":null,\"rawOffset\":0},\"weekDateSupported\":true,\"weekYear\":2020,\"weeksInWeekYear\":52},\"locDT\":null},\"location\":{\"CSStandardCity\":{\"CSContinentCode\":\"AS\",\"CSCountryCode\":\"KR\",\"CSParentCityID\":1902190,\"CSStateCode\":\"\"},\"cityDetails\":{\"city\":\"Gwangyang\",\"country\":\"South Korea\",\"county\":\"\",\"locationCode\":{\"UNLocationCode\":\"KRKAN\",\"mutuallyDefinedCode\":\"\",\"schedKDCode\":\"58031\",\"schedKDType\":{\"value\":\"K\"}},\"state\":\"Chollanam-do\"},\"facility\":null,\"locationName\":\"Gwangyang\"},\"mode\":\"\"},{\"CSEvent\":{\"CSEventCode\":\"CS060\",\"dimentionType\":\"\",\"dimentionValue\":\"\",\"estActIndicator\":\"A\"},\"carrEventCode\":\"Loaded on board at first port of load\",\"eventDT\":{\"GMT\":{\"calendarType\":\"gregory\",\"firstDayOfWeek\":1,\"gregorianChange\":{\"date\":15,\"day\":5,\"hours\":0,\"minutes\":0,\"month\":9,\"seconds\":0,\"time\":-12219292800000,\"timezoneOffset\":0,\"year\":-318},\"lenient\":true,\"minimalDaysInFirstWeek\":1,\"time\":{\"date\":14,\"day\":4,\"hours\":17,\"minutes\":15,\"month\":4,\"seconds\":0,\"time\":1589476500000,\"timezoneOffset\":0,\"year\":120},\"timeInMillis\":1589476500000,\"timeZone\":{\"DSTSavings\":0,\"ID\":\"GMT\",\"dirty\":false,\"displayName\":\"Greenwich Mean Time\",\"lastRuleInstance\":null,\"rawOffset\":0},\"weekDateSupported\":true,\"weekYear\":2020,\"weeksInWeekYear\":52},\"locDT\":{\"CSTimeZone\":\"KRT\",\"_value\":{\"calendarType\":\"gregory\",\"firstDayOfWeek\":1,\"gregorianChange\":{\"date\":15,\"day\":5,\"hours\":0,\"minutes\":0,\"month\":9,\"seconds\":0,\"time\":-12219292800000,\"timezoneOffset\":0,\"year\":-318},\"lenient\":true,\"minimalDaysInFirstWeek\":1,\"time\":{\"date\":15,\"day\":5,\"hours\":2,\"minutes\":15,\"month\":4,\"seconds\":0,\"time\":1589508900000,\"timezoneOffset\":0,\"year\":120},\"timeInMillis\":1589508900000,\"timeZone\":{\"DSTSavings\":0,\"ID\":\"GMT\",\"dirty\":false,\"displayName\":\"Greenwich Mean Time\",\"lastRuleInstance\":null,\"rawOffset\":0},\"weekDateSupported\":true,\"weekYear\":2020,\"weeksInWeekYear\":52},\"timeZone\":\"\"}},\"eventDescription\":\"\",\"eventReceivedDT\":{\"GMT\":{\"calendarType\":\"gregory\",\"firstDayOfWeek\":1,\"gregorianChange\":{\"date\":15,\"day\":5,\"hours\":0,\"minutes\":0,\"month\":9,\"seconds\":0,\"time\":-12219292800000,\"timezoneOffset\":0,\"year\":-318},\"lenient\":true,\"minimalDaysInFirstWeek\":1,\"time\":{\"date\":14,\"day\":4,\"hours\":17,\"minutes\":42,\"month\":4,\"seconds\":26,\"time\":1589478146000,\"timezoneOffset\":0,\"year\":120},\"timeInMillis\":1589478146000,\"timeZone\":{\"DSTSavings\":0,\"ID\":\"GMT\",\"dirty\":false,\"displayName\":\"Greenwich Mean Time\",\"lastRuleInstance\":null,\"rawOffset\":0},\"weekDateSupported\":true,\"weekYear\":2020,\"weeksInWeekYear\":52},\"locDT\":null},\"location\":{\"CSStandardCity\":{\"CSContinentCode\":\"AS\",\"CSCountryCode\":\"KR\",\"CSParentCityID\":1902190,\"CSStateCode\":\"\"},\"cityDetails\":{\"city\":\"Gwangyang\",\"country\":\"South Korea\",\"county\":\"\",\"locationCode\":null,\"state\":\"Chollanam-do\"},\"facility\":null,\"locationName\":\"Kwangyang\"},\"mode\":\"Vessel\"},{\"CSEvent\":{\"CSEventCode\":\"CS040\",\"dimentionType\":\"\",\"dimentionValue\":\"\",\"estActIndicator\":\"A\"},\"carrEventCode\":\"Outbound intermodal leg arrived\",\"eventDT\":{\"GMT\":{\"calendarType\":\"gregory\",\"firstDayOfWeek\":1,\"gregorianChange\":{\"date\":15,\"day\":5,\"hours\":0,\"minutes\":0,\"month\":9,\"seconds\":0,\"time\":-12219292800000,\"timezoneOffset\":0,\"year\":-318},\"lenient\":true,\"minimalDaysInFirstWeek\":1,\"time\":{\"date\":10,\"day\":0,\"hours\":23,\"minutes\":27,\"month\":4,\"seconds\":0,\"time\":1589153220000,\"timezoneOffset\":0,\"year\":120},\"timeInMillis\":1589153220000,\"timeZone\":{\"DSTSavings\":0,\"ID\":\"GMT\",\"dirty\":false,\"displayName\":\"Greenwich Mean Time\",\"lastRuleInstance\":null,\"rawOffset\":0},\"weekDateSupported\":true,\"weekYear\":2020,\"weeksInWeekYear\":52},\"locDT\":{\"CSTimeZone\":\"KRT\",\"_value\":{\"calendarType\":\"gregory\",\"firstDayOfWeek\":1,\"gregorianChange\":{\"date\":15,\"day\":5,\"hours\":0,\"minutes\":0,\"month\":9,\"seconds\":0,\"time\":-12219292800000,\"timezoneOffset\":0,\"year\":-318},\"lenient\":true,\"minimalDaysInFirstWeek\":1,\"time\":{\"date\":11,\"day\":1,\"hours\":8,\"minutes\":27,\"month\":4,\"seconds\":0,\"time\":1589185620000,\"timezoneOffset\":0,\"year\":120},\"timeInMillis\":1589185620000,\"timeZone\":{\"DSTSavings\":0,\"ID\":\"GMT\",\"dirty\":false,\"displayName\":\"Greenwich Mean Time\",\"lastRuleInstance\":null,\"rawOffset\":0},\"weekDateSupported\":true,\"weekYear\":2020,\"weeksInWeekYear\":52},\"timeZone\":\"\"}},\"eventDescription\":\"\",\"eventReceivedDT\":{\"GMT\":{\"calendarType\":\"gregory\",\"firstDayOfWeek\":1,\"gregorianChange\":{\"date\":15,\"day\":5,\"hours\":0,\"minutes\":0,\"month\":9,\"seconds\":0,\"time\":-12219292800000,\"timezoneOffset\":0,\"year\":-318},\"lenient\":true,\"minimalDaysInFirstWeek\":1,\"time\":{\"date\":11,\"day\":1,\"hours\":0,\"minutes\":0,\"month\":4,\"seconds\":16,\"time\":1589155216000,\"timezoneOffset\":0,\"year\":120},\"timeInMillis\":1589155216000,\"timeZone\":{\"DSTSavings\":0,\"ID\":\"GMT\",\"dirty\":false,\"displayName\":\"Greenwich Mean Time\",\"lastRuleInstance\":null,\"rawOffset\":0},\"weekDateSupported\":true,\"weekYear\":2020,\"weeksInWeekYear\":52},\"locDT\":null},\"location\":{\"CSStandardCity\":{\"CSContinentCode\":\"AS\",\"CSCountryCode\":\"KR\",\"CSParentCityID\":1902190,\"CSStateCode\":\"\"},\"cityDetails\":{\"city\":\"Gwangyang\",\"country\":\"South Korea\",\"county\":\"\",\"locationCode\":null,\"state\":\"Chollanam-do\"},\"facility\":null,\"locationName\":\"Kwangyang\"},\"mode\":\"Truck\"},{\"CSEvent\":{\"CSEventCode\":\"CS020\",\"dimentionType\":\"\",\"dimentionValue\":\"\",\"estActIndicator\":\"A\"},\"carrEventCode\":\"Full received by carrier\",\"eventDT\":{\"GMT\":{\"calendarType\":\"gregory\",\"firstDayOfWeek\":1,\"gregorianChange\":{\"date\":15,\"day\":5,\"hours\":0,\"minutes\":0,\"month\":9,\"seconds\":0,\"time\":-12219292800000,\"timezoneOffset\":0,\"year\":-318},\"lenient\":true,\"minimalDaysInFirstWeek\":1,\"time\":{\"date\":10,\"day\":0,\"hours\":23,\"minutes\":27,\"month\":4,\"seconds\":0,\"time\":1589153220000,\"timezoneOffset\":0,\"year\":120},\"timeInMillis\":1589153220000,\"timeZone\":{\"DSTSavings\":0,\"ID\":\"GMT\",\"dirty\":false,\"displayName\":\"Greenwich Mean Time\",\"lastRuleInstance\":null,\"rawOffset\":0},\"weekDateSupported\":true,\"weekYear\":2020,\"weeksInWeekYear\":52},\"locDT\":{\"CSTimeZone\":\"KRT\",\"_value\":{\"calendarType\":\"gregory\",\"firstDayOfWeek\":1,\"gregorianChange\":{\"date\":15,\"day\":5,\"hours\":0,\"minutes\":0,\"month\":9,\"seconds\":0,\"time\":-12219292800000,\"timezoneOffset\":0,\"year\":-318},\"lenient\":true,\"minimalDaysInFirstWeek\":1,\"time\":{\"date\":11,\"day\":1,\"hours\":8,\"minutes\":27,\"month\":4,\"seconds\":0,\"time\":1589185620000,\"timezoneOffset\":0,\"year\":120},\"timeInMillis\":1589185620000,\"timeZone\":{\"DSTSavings\":0,\"ID\":\"GMT\",\"dirty\":false,\"displayName\":\"Greenwich Mean Time\",\"lastRuleInstance\":null,\"rawOffset\":0},\"weekDateSupported\":true,\"weekYear\":2020,\"weeksInWeekYear\":52},\"timeZone\":\"\"}},\"eventDescription\":\"\",\"eventReceivedDT\":{\"GMT\":{\"calendarType\":\"gregory\",\"firstDayOfWeek\":1,\"gregorianChange\":{\"date\":15,\"day\":5,\"hours\":0,\"minutes\":0,\"month\":9,\"seconds\":0,\"time\":-12219292800000,\"timezoneOffset\":0,\"year\":-318},\"lenient\":true,\"minimalDaysInFirstWeek\":1,\"time\":{\"date\":11,\"day\":1,\"hours\":0,\"minutes\":0,\"month\":4,\"seconds\":16,\"time\":1589155216000,\"timezoneOffset\":0,\"year\":120},\"timeInMillis\":1589155216000,\"timeZone\":{\"DSTSavings\":0,\"ID\":\"GMT\",\"dirty\":false,\"displayName\":\"Greenwich Mean Time\",\"lastRuleInstance\":null,\"rawOffset\":0},\"weekDateSupported\":true,\"weekYear\":2020,\"weeksInWeekYear\":52},\"locDT\":null},\"location\":{\"CSStandardCity\":{\"CSContinentCode\":\"AS\",\"CSCountryCode\":\"KR\",\"CSParentCityID\":1902190,\"CSStateCode\":\"\"},\"cityDetails\":{\"city\":\"Gwangyang\",\"country\":\"South Korea\",\"county\":\"\",\"locationCode\":null,\"state\":\"Chollanam-do\"},\"facility\":null,\"locationName\":\"Korea International Terminal\"},\"mode\":\"Truck\"},{\"CSEvent\":{\"CSEventCode\":\"CS010\",\"dimentionType\":\"\",\"dimentionValue\":\"\",\"estActIndicator\":\"A\"},\"carrEventCode\":\"Empty picked up, but not full return\",\"eventDT\":{\"GMT\":{\"calendarType\":\"gregory\",\"firstDayOfWeek\":1,\"gregorianChange\":{\"date\":15,\"day\":5,\"hours\":0,\"minutes\":0,\"month\":9,\"seconds\":0,\"time\":-12219292800000,\"timezoneOffset\":0,\"year\":-318},\"lenient\":true,\"minimalDaysInFirstWeek\":1,\"time\":{\"date\":9,\"day\":6,\"hours\":8,\"minutes\":11,\"month\":4,\"seconds\":0,\"time\":1589011860000,\"timezoneOffset\":0,\"year\":120},\"timeInMillis\":1589011860000,\"timeZone\":{\"DSTSavings\":0,\"ID\":\"GMT\",\"dirty\":false,\"displayName\":\"Greenwich Mean Time\",\"lastRuleInstance\":null,\"rawOffset\":0},\"weekDateSupported\":true,\"weekYear\":2020,\"weeksInWeekYear\":52},\"locDT\":{\"CSTimeZone\":\"KRT\",\"_value\":{\"calendarType\":\"gregory\",\"firstDayOfWeek\":1,\"gregorianChange\":{\"date\":15,\"day\":5,\"hours\":0,\"minutes\":0,\"month\":9,\"seconds\":0,\"time\":-12219292800000,\"timezoneOffset\":0,\"year\":-318},\"lenient\":true,\"minimalDaysInFirstWeek\":1,\"time\":{\"date\":9,\"day\":6,\"hours\":17,\"minutes\":11,\"month\":4,\"seconds\":0,\"time\":1589044260000,\"timezoneOffset\":0,\"year\":120},\"timeInMillis\":1589044260000,\"timeZone\":{\"DSTSavings\":0,\"ID\":\"GMT\",\"dirty\":false,\"displayName\":\"Greenwich Mean Time\",\"lastRuleInstance\":null,\"rawOffset\":0},\"weekDateSupported\":true,\"weekYear\":2020,\"weeksInWeekYear\":52},\"timeZone\":\"\"}},\"eventDescription\":\"\",\"eventReceivedDT\":{\"GMT\":{\"calendarType\":\"gregory\",\"firstDayOfWeek\":1,\"gregorianChange\":{\"date\":15,\"day\":5,\"hours\":0,\"minutes\":0,\"month\":9,\"seconds\":0,\"time\":-12219292800000,\"timezoneOffset\":0,\"year\":-318},\"lenient\":true,\"minimalDaysInFirstWeek\":1,\"time\":{\"date\":9,\"day\":6,\"hours\":8,\"minutes\":25,\"month\":4,\"seconds\":8,\"time\":1589012708000,\"timezoneOffset\":0,\"year\":120},\"timeInMillis\":1589012708000,\"timeZone\":{\"DSTSavings\":0,\"ID\":\"GMT\",\"dirty\":false,\"displayName\":\"Greenwich Mean Time\",\"lastRuleInstance\":null,\"rawOffset\":0},\"weekDateSupported\":true,\"weekYear\":2020,\"weeksInWeekYear\":52},\"locDT\":null},\"location\":{\"CSStandardCity\":{\"CSContinentCode\":\"AS\",\"CSCountryCode\":\"KR\",\"CSParentCityID\":1902190,\"CSStateCode\":\"\"},\"cityDetails\":{\"city\":\"Gwangyang\",\"country\":\"South Korea\",\"county\":\"\",\"locationCode\":null,\"state\":\"Chollanam-do\"},\"facility\":null,\"locationName\":\"Korea International Terminal\"},\"mode\":\"Truck\"}],\"externalReference\":[{\"CSReferenceType\":{\"value\":\"BL\"},\"referenceDescription\":\"Bill of Lading Number\",\"referenceNumber\":\"6262443190\"},{\"CSReferenceType\":{\"value\":\"BKG\"},\"referenceDescription\":\"Booking Number\",\"referenceNumber\":\"6262443190\"}],\"route\":{\"FND\":{\"CSStandardCity\":{\"CSContinentCode\":\"EU\",\"CSCountryCode\":\"PL\",\"CSParentCityID\":2547944,\"CSStateCode\":\"\"},\"cityDetails\":{\"city\":\"Gdansk\",\"country\":\"Poland\",\"county\":\"\",\"locationCode\":null,\"state\":\"Pomorskie\"},\"facility\":{\"facilityCode\":\"GDN02\",\"facilityName\":\"Deepwater Container Terminal Gdansk\"},\"locationName\":\"\"},\"POR\":{\"CSStandardCity\":{\"CSContinentCode\":\"AS\",\"CSCountryCode\":\"KR\",\"CSParentCityID\":1902190,\"CSStateCode\":\"\"},\"cityDetails\":{\"city\":\"Kwangyang\",\"country\":\"South Korea\",\"county\":\"\",\"locationCode\":null,\"state\":\"Chollanam-do\"},\"facility\":{\"facilityCode\":\"KAN05\",\"facilityName\":\"Korea International Terminal\"},\"locationName\":\"\"},\"arrivalAtFinalHub\":[{\"GMT\":{\"calendarType\":\"gregory\",\"firstDayOfWeek\":1,\"gregorianChange\":{\"date\":15,\"day\":5,\"hours\":0,\"minutes\":0,\"month\":9,\"seconds\":0,\"time\":-12219292800000,\"timezoneOffset\":0,\"year\":-318},\"lenient\":true,\"minimalDaysInFirstWeek\":1,\"time\":{\"date\":25,\"day\":4,\"hours\":7,\"minutes\":0,\"month\":5,\"seconds\":0,\"time\":1593068400000,\"timezoneOffset\":0,\"year\":120},\"timeInMillis\":1593068400000,\"timeZone\":{\"DSTSavings\":0,\"ID\":\"GMT\",\"dirty\":false,\"displayName\":\"Greenwich Mean Time\",\"lastRuleInstance\":null,\"rawOffset\":0},\"weekDateSupported\":true,\"weekYear\":2020,\"weeksInWeekYear\":52},\"indicator\":{\"value\":\"E\"},\"locDT\":{\"CSTimeZone\":\"\",\"_value\":{\"calendarType\":\"gregory\",\"firstDayOfWeek\":1,\"gregorianChange\":{\"date\":15,\"day\":5,\"hours\":0,\"minutes\":0,\"month\":9,\"seconds\":0,\"time\":-12219292800000,\"timezoneOffset\":0,\"year\":-318},\"lenient\":true,\"minimalDaysInFirstWeek\":1,\"time\":{\"date\":25,\"day\":4,\"hours\":9,\"minutes\":0,\"month\":5,\"seconds\":0,\"time\":1593075600000,\"timezoneOffset\":0,\"year\":120},\"timeInMillis\":1593075600000,\"timeZone\":{\"DSTSavings\":0,\"ID\":\"GMT\",\"dirty\":false,\"displayName\":\"Greenwich Mean Time\",\"lastRuleInstance\":null,\"rawOffset\":0},\"weekDateSupported\":true,\"weekYear\":2020,\"weeksInWeekYear\":52},\"timeZone\":\"CES\"}}],\"firstPOL\":{\"facility\":{\"facilityCode\":\"KAN05\",\"facilityName\":\"Korea International Terminal\"},\"port\":{\"CSCountryCode\":\"KR\",\"CSPortID\":360,\"city\":\"Kwangyang\",\"country\":\"South Korea\",\"county\":\"\",\"locationCode\":{\"UNLocationCode\":\"KRKAN\",\"mutuallyDefinedCode\":\"\",\"schedKDCode\":\"58031\",\"schedKDType\":{\"value\":\"K\"}},\"portCode\":\"\",\"portName\":\"Kwangyang\",\"state\":\"Chollanam-do\"}},\"fullReturnCutOffDT\":{\"GMT\":{\"calendarType\":\"gregory\",\"firstDayOfWeek\":1,\"gregorianChange\":{\"date\":15,\"day\":5,\"hours\":0,\"minutes\":0,\"month\":9,\"seconds\":0,\"time\":-12219292800000,\"timezoneOffset\":0,\"year\":-318},\"lenient\":true,\"minimalDaysInFirstWeek\":1,\"time\":{\"date\":13,\"day\":3,\"hours\":3,\"minutes\":0,\"month\":4,\"seconds\":0,\"time\":1589338800000,\"timezoneOffset\":0,\"year\":120},\"timeInMillis\":1589338800000,\"timeZone\":{\"DSTSavings\":0,\"ID\":\"GMT\",\"dirty\":false,\"displayName\":\"Greenwich Mean Time\",\"lastRuleInstance\":null,\"rawOffset\":0},\"weekDateSupported\":true,\"weekYear\":2020,\"weeksInWeekYear\":52},\"locDT\":{\"CSTimeZone\":\"KRT\",\"_value\":{\"calendarType\":\"gregory\",\"firstDayOfWeek\":1,\"gregorianChange\":{\"date\":15,\"day\":5,\"hours\":0,\"minutes\":0,\"month\":9,\"seconds\":0,\"time\":-12219292800000,\"timezoneOffset\":0,\"year\":-318},\"lenient\":true,\"minimalDaysInFirstWeek\":1,\"time\":{\"date\":13,\"day\":3,\"hours\":12,\"minutes\":0,\"month\":4,\"seconds\":0,\"time\":1589371200000,\"timezoneOffset\":0,\"year\":120},\"timeInMillis\":1589371200000,\"timeZone\":{\"DSTSavings\":0,\"ID\":\"GMT\",\"dirty\":false,\"displayName\":\"Greenwich Mean Time\",\"lastRuleInstance\":null,\"rawOffset\":0},\"weekDateSupported\":true,\"weekYear\":2020,\"weeksInWeekYear\":52},\"timeZone\":\"KST\"}},\"haulage\":{\"inBound\":{\"value\":\"M\"},\"outBound\":{\"value\":\"M\"}},\"lastPOD\":{\"facility\":{\"facilityCode\":\"GDN02\",\"facilityName\":\"Deepwater Container Terminal Gdansk\"},\"port\":{\"CSCountryCode\":\"PL\",\"CSPortID\":341,\"city\":\"Gdansk\",\"country\":\"Poland\",\"county\":\"\",\"locationCode\":{\"UNLocationCode\":\"PLGDN\",\"mutuallyDefinedCode\":\"\",\"schedKDCode\":\"45511\",\"schedKDType\":{\"value\":\"K\"}},\"portCode\":\"\",\"portName\":\"Gdansk\",\"state\":\"Pomorskie\"}},\"shipmentLeg\":[{\"POD\":{\"facility\":{\"facilityCode\":\"GDN02\",\"facilityName\":\"Deepwater Container Terminal Gdansk\"},\"port\":{\"CSCountryCode\":\"PL\",\"CSPortID\":341,\"city\":\"Gdansk\",\"country\":\"Poland\",\"county\":\"\",\"locationCode\":null,\"portCode\":\"\",\"portName\":\"Gdansk\",\"state\":\"Pomorskie\"}},\"POL\":{\"facility\":{\"facilityCode\":\"KAN05\",\"facilityName\":\"Korea International Terminal\"},\"port\":{\"CSCountryCode\":\"KR\",\"CSPortID\":360,\"city\":\"Gwangyang\",\"country\":\"South Korea\",\"county\":\"\",\"locationCode\":null,\"portCode\":\"\",\"portName\":\"Kwangyang\",\"state\":\"Chollanam-do\"}},\"SVVD\":{\"discharge\":{\"callNumber\":1,\"callSign\":\"VRRB8\",\"direction\":\"E\",\"lloydsNumber\":\"9776212\",\"service\":\"AEU1\",\"vessel\":\"NQ3\",\"vesselName\":\"OOCL SCANDINAVIA\",\"vesselNationality\":\"\",\"voyage\":\"012\"},\"loading\":{\"callNumber\":1,\"callSign\":\"VRRB8\",\"direction\":\"W\",\"lloydsNumber\":\"9776212\",\"service\":\"AEU1\",\"vessel\":\"NQ3\",\"vesselName\":\"OOCL SCANDINAVIA\",\"vesselNationality\":\"\",\"voyage\":\"012\"},\"vesselVoyageType\":{\"value\":\"OUTBOUND\"}},\"arrivalDT\":[{\"GMT\":{\"calendarType\":\"gregory\",\"firstDayOfWeek\":1,\"gregorianChange\":{\"date\":15,\"day\":5,\"hours\":0,\"minutes\":0,\"month\":9,\"seconds\":0,\"time\":-12219292800000,\"timezoneOffset\":0,\"year\":-318},\"lenient\":true,\"minimalDaysInFirstWeek\":1,\"time\":{\"date\":23,\"day\":2,\"hours\":17,\"minutes\":0,\"month\":5,\"seconds\":0,\"time\":1592931600000,\"timezoneOffset\":0,\"year\":120},\"timeInMillis\":1592931600000,\"timeZone\":{\"DSTSavings\":0,\"ID\":\"GMT\",\"dirty\":false,\"displayName\":\"Greenwich Mean Time\",\"lastRuleInstance\":null,\"rawOffset\":0},\"weekDateSupported\":true,\"weekYear\":2020,\"weeksInWeekYear\":52},\"indicator\":{\"value\":\"E\"},\"locDT\":{\"CSTimeZone\":\"CEST\",\"_value\":{\"calendarType\":\"gregory\",\"firstDayOfWeek\":1,\"gregorianChange\":{\"date\":15,\"day\":5,\"hours\":0,\"minutes\":0,\"month\":9,\"seconds\":0,\"time\":-12219292800000,\"timezoneOffset\":0,\"year\":-318},\"lenient\":true,\"minimalDaysInFirstWeek\":1,\"time\":{\"date\":23,\"day\":2,\"hours\":19,\"minutes\":0,\"month\":5,\"seconds\":0,\"time\":1592938800000,\"timezoneOffset\":0,\"year\":120},\"timeInMillis\":1592938800000,\"timeZone\":{\"DSTSavings\":0,\"ID\":\"GMT\",\"dirty\":false,\"displayName\":\"Greenwich Mean Time\",\"lastRuleInstance\":null,\"rawOffset\":0},\"weekDateSupported\":true,\"weekYear\":2020,\"weeksInWeekYear\":52},\"timeZone\":\"\"}}],\"departureDT\":[{\"GMT\":{\"calendarType\":\"gregory\",\"firstDayOfWeek\":1,\"gregorianChange\":{\"date\":15,\"day\":5,\"hours\":0,\"minutes\":0,\"month\":9,\"seconds\":0,\"time\":-12219292800000,\"timezoneOffset\":0,\"year\":-318},\"lenient\":true,\"minimalDaysInFirstWeek\":1,\"time\":{\"date\":15,\"day\":5,\"hours\":4,\"minutes\":0,\"month\":4,\"seconds\":0,\"time\":1589515200000,\"timezoneOffset\":0,\"year\":120},\"timeInMillis\":1589515200000,\"timeZone\":{\"DSTSavings\":0,\"ID\":\"GMT\",\"dirty\":false,\"displayName\":\"Greenwich Mean Time\",\"lastRuleInstance\":null,\"rawOffset\":0},\"weekDateSupported\":true,\"weekYear\":2020,\"weeksInWeekYear\":52},\"indicator\":{\"value\":\"E\"},\"locDT\":{\"CSTimeZone\":\"KRT\",\"_value\":{\"calendarType\":\"gregory\",\"firstDayOfWeek\":1,\"gregorianChange\":{\"date\":15,\"day\":5,\"hours\":0,\"minutes\":0,\"month\":9,\"seconds\":0,\"time\":-12219292800000,\"timezoneOffset\":0,\"year\":-318},\"lenient\":true,\"minimalDaysInFirstWeek\":1,\"time\":{\"date\":15,\"day\":5,\"hours\":13,\"minutes\":0,\"month\":4,\"seconds\":0,\"time\":1589547600000,\"timezoneOffset\":0,\"year\":120},\"timeInMillis\":1589547600000,\"timeZone\":{\"DSTSavings\":0,\"ID\":\"GMT\",\"dirty\":false,\"displayName\":\"Greenwich Mean Time\",\"lastRuleInstance\":null,\"rawOffset\":0},\"weekDateSupported\":true,\"weekYear\":2020,\"weeksInWeekYear\":52},\"timeZone\":\"\"}},{\"GMT\":{\"calendarType\":\"gregory\",\"firstDayOfWeek\":1,\"gregorianChange\":{\"date\":15,\"day\":5,\"hours\":0,\"minutes\":0,\"month\":9,\"seconds\":0,\"time\":-12219292800000,\"timezoneOffset\":0,\"year\":-318},\"lenient\":true,\"minimalDaysInFirstWeek\":1,\"time\":{\"date\":15,\"day\":5,\"hours\":0,\"minutes\":9,\"month\":4,\"seconds\":35,\"time\":1589501375000,\"timezoneOffset\":0,\"year\":120},\"timeInMillis\":1589501375000,\"timeZone\":{\"DSTSavings\":0,\"ID\":\"GMT\",\"dirty\":false,\"displayName\":\"Greenwich Mean Time\",\"lastRuleInstance\":null,\"rawOffset\":0},\"weekDateSupported\":true,\"weekYear\":2020,\"weeksInWeekYear\":52},\"indicator\":{\"value\":\"A\"},\"locDT\":{\"CSTimeZone\":\"KRT\",\"_value\":{\"calendarType\":\"gregory\",\"firstDayOfWeek\":1,\"gregorianChange\":{\"date\":15,\"day\":5,\"hours\":0,\"minutes\":0,\"month\":9,\"seconds\":0,\"time\":-12219292800000,\"timezoneOffset\":0,\"year\":-318},\"lenient\":true,\"minimalDaysInFirstWeek\":1,\"time\":{\"date\":15,\"day\":5,\"hours\":9,\"minutes\":9,\"month\":4,\"seconds\":35,\"time\":1589533775000,\"timezoneOffset\":0,\"year\":120},\"timeInMillis\":1589533775000,\"timeZone\":{\"DSTSavings\":0,\"ID\":\"GMT\",\"dirty\":false,\"displayName\":\"Greenwich Mean Time\",\"lastRuleInstance\":null,\"rawOffset\":0},\"weekDateSupported\":true,\"weekYear\":2020,\"weeksInWeekYear\":52},\"timeZone\":\"\"}}],\"legSeq\":1}]},\"status\":[]},\"queryCriteria\":{\"carrierSCACCode\":\"COSU\",\"containerNumber\":\"FCIU5812619\",\"timeStamp\":\"\"},\"queryError\":[]}";
+		
+		JsonParser springParser = JsonParserFactory.getJsonParser();
+		Map<String, Object> map = springParser.parseMap(resp);
+
+		String mapArray[] = new String[map.size()];
+		System.out.println("Items found: " + mapArray.length);
+//		for (int i=0; i < mapArray.length; i++) {
+//			System.out.println("mapArray:" + mapArray[i]);
+//		}
+
+//		int i = 0;
+		int step = 0;
+		for (Map.Entry<String, Object> entry : map.entrySet()) {
+//				System.out.println(entry.getKey() + " = " + entry.getValue() + "?" + entry.getValue().getClass());
+//				i++;
+			
+//				if ( entry.getValue() instanceof java.lang.String ) {
+//					System.out.println("1:" + entry.getKey() + " = " + entry.getValue() + "?" + entry.getValue().getClass());
+//				}else if ( entry.getValue() instanceof java.util.LinkedHashMap ) {
+//					Map<String, Object> map2 = (Map)entry.getValue(); //springParser.parseMap(entry.getValue().toString());
+//					for (Map.Entry<String, Object> entry2 : map2.entrySet()) {
+//						System.out.println("2:" + entry2.getKey() + " = " + entry2.getValue() + "?" + entry2.getValue().getClass());
+//					}
+//				}else if ( entry.getValue() instanceof java.util.ArrayList ) {
+//					List<Object> list = (List<Object>) entry.getValue();
+//					for(Object o : list) {
+//						System.out.println("3:" + o.getClass());
+//					}
+//				}
+				
+				step = jsonRecursionPrint(++step, entry);
+//				jsonObjectPrint(entry);
+				
+//				Map<String, Object> map2 = springParser.parseMap(entry.getValue().toString());
+//				for (Map.Entry<String, Object> entry2 : map2.entrySet()) {
+//					System.out.println(entry2.getKey() + " = " + entry2.getValue());
+//				}
+				
+		}
 		logger.info("End Postgresql To Oracle:");
 
 	}
+	
+//	@Scheduled(fixedDelay = 1000 * 60 * 2, initialDelay = 1000)
+	public void selectRoutesSchedules() throws InterruptedException {
 
+		System.out.println(this.prosAppKeyCOSU);
+		System.out.println(this.prosUrlSchedules);
+		
+		Calendar calendar = new GregorianCalendar();
+
+		int hour = calendar.get(Calendar.HOUR); // 12 hour clock
+		int hourOfDay = calendar.get(Calendar.HOUR_OF_DAY); // 24 hour clock
+		int minute = calendar.get(Calendar.MINUTE);
+		int second = calendar.get(Calendar.SECOND);
+		int millisecond = calendar.get(Calendar.MILLISECOND);
+
+		logger.info("START Postgressql To Oracle " + hour + ":" + minute + ":" + second + "." + millisecond);
+
+
+		String url=this.prosUrlSchedules+"/" + "COSU" + "?appKey=" +this.prosAppKeyCOSU + "&porID=KRPUS&fndID=USLAX";
+				
+				
+//		RestTemplate restTemplate = new RestTemplate();
+//		String resp = restTemplate.getForObject(url, String.class);
+
+		String resp = "{\"dataRange\":{\"departureFrom\":\"2020-06-11T00:00:00.000Z\",\"departureTo\":\"2020-06-24T23:59:59.999Z\"},\"requestRefNo\":\"af38921c-b420-4292-b1d0-34ab7a303be8\",\"routeGroupsList\":[{\"identification\":{\"dataSourceType\":\"SSM2014\",\"requestRefNo\":\"af38921c-b420-4292-b1d0-34ab7a303be8\"},\"carrier\":{\"_id\":\"557ab159395a5b8cdab49526\",\"carrierID\":2,\"name\":\"COSCO SHIPPING\",\"scac\":\"COSU\",\"shortName\":\"COSCO SHIPPING\",\"url\":\"http://lines.coscoshipping.com\",\"enabled\":true,\"ssmEnabled\":true,\"sortingKey\":\"coscon\",\"updatedAt\":\"2019-07-10T07:27:21.498Z\",\"updatedBy\":\"CSDev\",\"analyticsEnabled\":true},\"por\":{\"location\":{\"_id\":\"5ee1ac495f94ff0016204478\",\"source\":\"CS4\",\"unlocode\":\"KRPUS\",\"name\":\"Busan\",\"uc_name\":\"BUSAN\",\"geo\":[129.075642,35.179554],\"locationID\":\"P358\",\"csID\":358,\"csCityID\":2535304,\"type\":\"PORT\",\"fullName\":\"Busan, South Korea\",\"timezone\":\"Asia/Seoul\",\"refreshDateTime\":\"2020-06-11T04:00:09.791Z\"}},\"fnd\":{\"location\":{\"_id\":\"5ee1ac445f94ff00162040a3\",\"source\":\"CS4\",\"unlocode\":\"USLAX\",\"name\":\"Los Angeles\",\"uc_name\":\"LOS ANGELES\",\"geo\":[-118.25717,33.745753],\"locationID\":\"P426\",\"csID\":426,\"csCityID\":2532344,\"type\":\"PORT\",\"fullName\":\"Los Angeles, California, United States\",\"timezone\":\"America/Los_Angeles\",\"refreshDateTime\":\"2020-06-11T04:00:04.554Z\"}},\"route\":[{\"csRouteID\":2280240331,\"csPointPairID\":7295871,\"carrierScac\":\"COSU\",\"por\":{\"location\":{\"locationID\":\"P358\",\"name\":\"Busan\",\"unlocode\":\"KRPUS\",\"csID\":358,\"csCityId\":2535304,\"timezone\":\"Asia/Seoul\",\"facility\":{\"name\":\"Busan New Container Terminal\",\"code\":\"PUS83\",\"id\":11674,\"type\":\"Terminal\"}},\"etd\":\"2020-06-18T00:00:00.000Z\"},\"fnd\":{\"location\":{\"locationID\":\"P426\",\"name\":\"Los Angeles\",\"unlocode\":\"USLAX\",\"csID\":426,\"csCityId\":2532344,\"timezone\":\"America/Los_Angeles\",\"facility\":{\"name\":\"Long Beach Container Terminal , LLC\",\"code\":\"LGB08\",\"id\":17306,\"type\":\"Terminal\"}},\"eta\":\"2020-06-29T00:00:00.000Z\",\"arrivalTimeLocation\":{\"locationID\":\"P425\",\"name\":\"Long Beach\",\"unlocode\":\"USLGB\",\"csID\":425,\"csCityId\":2533284,\"timezone\":\"America/Los_Angeles\"}},\"transitTime\":11,\"direct\":true,\"importHaulage\":\"BOTH\",\"exportHaulage\":\"BOTH\",\"touchTime\":\"2020-06-10T15:00:26.000Z\",\"leg\":[{\"fromPoint\":{\"voyageStop\":{\"voyageStopId\":24948841,\"skip\":false},\"location\":{\"locationID\":\"P358\",\"name\":\"Busan\",\"unlocode\":\"KRPUS\",\"csID\":358,\"csCityId\":2535304,\"timezone\":\"Asia/Seoul\"},\"defaultCutoff\":\"2020-06-17T06:00:00.000Z\",\"etd\":\"2020-06-18T00:00:00.000Z\",\"gmtEtd\":\"2020-06-17T15:00:00.000Z\"},\"toPoint\":{\"voyageStop\":{\"voyageStopId\":24948842,\"skip\":false},\"location\":{\"locationID\":\"P425\",\"name\":\"Long Beach\",\"unlocode\":\"USLGB\",\"csID\":425,\"csCityId\":2533284,\"timezone\":\"America/Los_Angeles\"},\"eta\":\"2020-06-29T00:00:00.000Z\",\"gmtEta\":\"2020-06-29T07:00:00.000Z\"},\"transportMode\":\"VESSEL\",\"service\":{\"serviceID\":10025085,\"code\":\"AAC4\",\"name\":\"OOCL U.S. Southwest Coast Express Service\"},\"vessel\":{\"vesselGID\":\"V000000102\",\"name\":\"OOCL SOUTHAMPTON\",\"code\":\"QBQ\",\"IMO\":9310240},\"imoNumber\":9310240,\"externalVoyageNumber\":\"094E\",\"transitTime\":11}],\"transportSummary\":\"VESSEL:10025085:V000000102:094E\",\"defaultCutoff\":{\"cutoffTime\":\"2020-06-17T06:00:00.000Z\"},\"isPossibleDirect\":true,\"isUncertainTransitTime\":false}]}]}";
+		
+//		resp = "\"";
+		JsonParser springParser = JsonParserFactory.getJsonParser();
+		Map<String, Object> map = springParser.parseMap(resp);
+
+		String mapArray[] = new String[map.size()];
+		System.out.println("Items found: " + mapArray.length);
+//		for (int i=0; i < mapArray.length; i++) {
+//			System.out.println("mapArray:" + mapArray[i]);
+//		}
+
+//		int i = 0;
+		int step = 0;
+		for (Map.Entry<String, Object> entry : map.entrySet()) {
+//				System.out.println(entry.getKey() + " = " + entry.getValue() + "?" + entry.getValue().getClass());
+//				i++;
+			
+//				if ( entry.getValue() instanceof java.lang.String ) {
+//					System.out.println("1:" + entry.getKey() + " = " + entry.getValue() + "?" + entry.getValue().getClass());
+//				}else if ( entry.getValue() instanceof java.util.LinkedHashMap ) {
+//					Map<String, Object> map2 = (Map)entry.getValue(); //springParser.parseMap(entry.getValue().toString());
+//					for (Map.Entry<String, Object> entry2 : map2.entrySet()) {
+//						System.out.println("2:" + entry2.getKey() + " = " + entry2.getValue() + "?" + entry2.getValue().getClass());
+//					}
+//				}else if ( entry.getValue() instanceof java.util.ArrayList ) {
+//					List<Object> list = (List<Object>) entry.getValue();
+//					for(Object o : list) {
+//						System.out.println("3:" + o.getClass());
+//					}
+//				}
+				
+				step = jsonRecursionPrint(++step, entry);
+//				jsonObjectPrint(entry);
+				
+//				Map<String, Object> map2 = springParser.parseMap(entry.getValue().toString());
+//				for (Map.Entry<String, Object> entry2 : map2.entrySet()) {
+//					System.out.println(entry2.getKey() + " = " + entry2.getValue());
+//				}
+				
+		}
+		logger.info("End Postgresql To Oracle:");
+
+	}
+/*	
+	public int jsonRecursionPrint(int step, Object object) {
+		System.out.println("step:" + step);
+		try {
+		String tab = "";
+		for(int i=0; i<step; i++) {tab = tab + "    ";}
+		
+			if (step > 5) {
+				return step;
+			}else {		
+				System.out.println(object.getClass());
+				if ( object instanceof java.lang.String ) {
+					System.out.println(tab + object + " ?" + object.getClass());
+	//				System.out.println("string:" + object.toString());			
+				} else if ( object instanceof java.util.LinkedHashMap ) {
+					System.out.println(object.getClass());
+					Map<String, Object> map = (Map) object;
+					for (Map.Entry<String, Object> entry : map.entrySet()) {
+						System.out.println(tab + entry.getKey() + " ?" + entry.getValue().getClass());
+						step = jsonRecursionPrint(++step, entry);
+					}
+				} else if ( object instanceof java.util.ArrayList ) {
+					List list = (List)object;
+					for(int i=0; i< list.size(); i++) {
+						System.out.println(tab + i + " ?" + object.getClass());
+						Object o = list.get(i);
+						step = jsonRecursionPrint(++step, o);
+					}
+	
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return --step;
+	}
+*/
+	public int jsonRecursionPrint(int step, Map.Entry<String, Object> entry) {
+//		System.out.println("step:" + step);
+		String tab = "";
+		for(int i=0; i<step; i++) {tab = tab + "    ";}
+
+		if (step > 100) {
+			return step;
+		}else {
+			if ( entry.getValue() instanceof java.lang.String ) {
+				System.out.println(tab + entry.getKey() + " : " + entry.getValue() + " ?" + entry.getValue().getClass());
+			}else if ( entry.getValue() instanceof java.util.LinkedHashMap ) {
+				System.out.println(tab + entry.getKey() + " ?" + entry.getValue().getClass());
+				Map<String, Object> map = (Map)entry.getValue(); //springParser.parseMap(entry.getValue().toString());
+//				step++;
+				for (Map.Entry<String, Object> entry2 : map.entrySet()) {
+					step = jsonRecursionPrint(++step, entry2);
+				}
+			}else if ( entry.getValue() instanceof java.util.ArrayList ) {
+				System.out.println(tab + entry.getKey() + " ?" + entry.getValue().getClass());
+				List<Object> list = (List<Object>) entry.getValue();
+				for(int i=0; i<list.size(); i++) {
+					++step;
+//					tab = tab + "    ";
+					tab = ""; 
+					for(int j=0; j<step; j++) {tab = tab + "    ";}
+					System.out.println(tab + "" + i);
+					Object o = list.get(i);
+					step = jsonObjectPrint(++step, o);
+					--step;
+//					++step;
+////					System.out.println("object:"+o +">>" + o.getClass());
+////					jsonObjectPrint(step++, o);
+//					if ( o instanceof java.lang.String ) {
+//						System.out.println(tab + entry.getKey() + " : " + entry.getValue() + " ?" + entry.getValue().getClass());
+//					} else if ( o instanceof java.util.LinkedHashMap ) {
+////						System.out.println("LinkedHashMap:" + o.toString());
+//						System.out.println(tab + entry.getKey() + " ?" + entry.getValue().getClass());
+//						Map<String, Object> map = (Map) o;
+//						for (Map.Entry<String, Object> entry1 : map.entrySet()) {
+//							step = jsonRecursionPrint(++step, entry1);
+//						}
+//					} else if ( o instanceof java.util.ArrayList ) {
+////						System.out.println("ArrayList:" + o.toString());
+//						for(Object o2 : (List) o) {
+////							System.out.println("3:" + o2.getClass());
+//							step = jsonObjectPrint(++step, o2);
+//						}
+//					} else {
+//						System.out.println(tab + entry.getKey() + " : " + entry.getValue() + " ?" + entry.getValue().getClass());
+//					}
+//					--step;
+				}
+			} else {
+//				if (entry.getValue() == null) System.out.println("null value");
+//				if (entry.getValue().equals("null")) System.out.println("null value2");
+//				System.out.println(tab + entry.getKey() + " : " + entry.getValue() + " ?");
+				if (entry.getValue() == null ) {
+					System.out.println(tab + entry.getKey() + " : " + entry.getValue() + " ?" + "null");
+				}else {
+					System.out.println(tab + entry.getKey() + " : " + entry.getValue() + " ?" + entry.getValue().getClass());
+				}
+				
+			}
+		}
+		return --step;
+	}
+
+	public int jsonObjectPrint(int step, Object object) {
+		String tab = "";
+		for(int i=0; i<step; i++) {tab = tab + "    ";}
+
+		if (step > 100) {
+			return step;
+		}else {		
+//			System.out.println(object.getClass());
+			if ( object instanceof java.lang.String ) {
+				System.out.println(tab + object.toString());
+			} else if ( object instanceof java.util.LinkedHashMap ) {
+//				System.out.println("LinkedHashMap:" + object.toString());
+				Map<String, Object> map = (Map) object;
+				for (Map.Entry<String, Object> entry : map.entrySet()) {
+					step = jsonRecursionPrint(++step, entry);
+				}
+			} else if ( object instanceof java.util.ArrayList ) {
+//				System.out.println("ArrayList:" + object.toString());
+				for(Object o : (List) object) {
+//					System.out.println("3:" + o.getClass());
+					step = jsonObjectPrint(step++, o);
+				}
+			} else {
+				System.out.println(tab + object.toString());
+			}
+		}
+		return --step;
+	}
 }
