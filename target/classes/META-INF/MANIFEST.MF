@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Implementation-Title: OpenApiGathering
 Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: o
+Built-By: Administrator
 Implementation-Vendor-Id: com.klnet
-Build-Jdk: 1.8.0_231
+Build-Jdk: 1.8.0_74
 Implementation-URL: http://projects.spring.io/spring-boot/OpenApiGathe
  ring/
 Created-By: Maven Integration for Eclipse

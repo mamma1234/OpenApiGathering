@@ -7903,3 +7903,16 @@ java.lang.NullPointerException: null
 [INFO ] 2020-06-11 17:38:54.774 [pool-2-thread-1] CargoSmartService - START Postgressql To Oracle 5:38:54.772
 [INFO ] 2020-06-11 17:38:54.777 [pool-2-thread-1] CargoSmartService - https://apis.cargosmart.com/openapi/cargoes/tracking/COSU?appKey=69338670-9c07-11ea-ae83-7956f3992d4c&scacCode=COSU&cntrNumber=FCIU5812619
 [INFO ] 2020-06-11 17:38:54.949 [pool-2-thread-1] CargoSmartService - End Postgresql To Oracle:
+[INFO ] 2020-06-11 19:42:06.242 [main] OpenApiGatheringApplication - Starting OpenApiGatheringApplication on o-PC with PID 207436 (C:\egovframeworkSample\eclipse-jee-neon-2-win32-x86_64\workspace\OpenApiGathering\target\classes started by Administrator in C:\egovframeworkSample\eclipse-jee-neon-2-win32-x86_64\workspace\OpenApiGathering)
+[INFO ] 2020-06-11 19:42:06.686 [main] OpenApiGatheringApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2020-06-11 19:42:06.969 [main] AnnotationConfigApplicationContext - Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@7e6f74c: startup date [Thu Jun 11 19:42:06 KST 2020]; root of context hierarchy
+[WARN ] 2020-06-11 19:42:07.812 [main] ClassPathMapperScanner - No MyBatis mapper was found in '[com.klnet.application.Db1AbstractDAO]' package. Please check your configuration.
+[WARN ] 2020-06-11 19:42:07.816 [main] ClassPathMapperScanner - No MyBatis mapper was found in '[com.klnet.application.Db2AbstractDAO]' package. Please check your configuration.
+[WARN ] 2020-06-11 19:42:08.142 [main] ClassPathMapperScanner - No MyBatis mapper was found in '[com.klnet.application]' package. Please check your configuration.
+[INFO ] 2020-06-11 19:42:11.277 [main] AnnotationMBeanExporter - Registering beans for JMX exposure on startup
+[INFO ] 2020-06-11 19:42:11.303 [main] OpenApiGatheringApplication - Started OpenApiGatheringApplication in 5.65 seconds (JVM running for 9.909)
+[INFO ] 2020-06-11 19:42:12.320 [pool-2-thread-1] CargoSmartService - START Postgressql To Oracle 7:42:12.319
+[INFO ] 2020-06-11 19:42:12.321 [pool-2-thread-1] CargoSmartService - https://apis.cargosmart.com/openapi/cargoes/tracking/COSU?appKey=69338670-9c07-11ea-ae83-7956f3992d4c&scacCode=COSU&cntrNumber=FCIU5812619
+[INFO ] 2020-06-11 19:42:12.394 [pool-2-thread-2] CargoSmartService - START Postgressql To Oracle 7:42:12.394
+[INFO ] 2020-06-11 19:42:12.433 [pool-2-thread-1] CargoSmartService - End Postgresql To Oracle:
+[INFO ] 2020-06-11 19:42:12.834 [pool-2-thread-2] CargoSmartService - End Postgresql To Oracle:

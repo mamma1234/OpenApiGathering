@@ -115,7 +115,7 @@ public class CargoSmartService {
 
 	}
 	
-//	@Scheduled(fixedDelay = 1000 * 60 * 2, initialDelay = 1000)
+	@Scheduled(fixedDelay = 1000 * 60 * 2, initialDelay = 1000)
 	public void selectRoutesSchedules() throws InterruptedException {
 
 		System.out.println(this.prosAppKeyCOSU);
