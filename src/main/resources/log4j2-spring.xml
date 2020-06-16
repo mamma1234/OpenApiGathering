@@ -65,7 +65,7 @@
             <!-- <AppenderRef ref="App-File-Appender"/> -->
             <AppenderRef ref="Console-Appender"/>
          </Logger>
-        <Logger name="com.klnet.owner" level="info" additivity="false">
+        <Logger name="com.klnet.application" level="info" additivity="false">
             <AppenderRef ref="In-Rolling-File-Appender"/>
             <AppenderRef ref="Console-Appender"/>
          </Logger>

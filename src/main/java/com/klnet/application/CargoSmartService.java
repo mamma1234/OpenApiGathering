@@ -1,19 +1,23 @@
 package com.klnet.application;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.json.JsonParser;
 import org.springframework.boot.json.JsonParserFactory;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestTemplate;
 
 
@@ -40,14 +44,15 @@ public class CargoSmartService {
 	@Value("${cargosmart.url.tracking}")
 	private String prosUrlTracking;
 	
-	
+	@Autowired
+	SchedulesProperties properties;
 	/*
 	 * https://apis.cargosmart.com/openapi/schedules/routeschedules/COSU?appKey=69338670-9c07-11ea-ae83-7956f3992d4c&porID=KRPUS&fndID=USLAX
 	 * https://apis.cargosmart.com/openapi/cargoes/tracking/COSU?appKey=69338670-9c07-11ea-ae83-7956f3992d4c&cntrNumber=FCIU5812619&scacCode=COSU 
 	 */
 	
 			
-	@Scheduled(fixedDelay = 1000 * 60 * 2, initialDelay = 1000)
+//	@Scheduled(fixedDelay = 1000 * 60 * 2, initialDelay = 1000)
 	public void selectCargoTracking() throws InterruptedException {
 
 		System.out.println(this.prosAppKeyCOSU);
@@ -115,13 +120,12 @@ public class CargoSmartService {
 
 	}
 	
-//	@Scheduled(fixedDelay = 1000 * 60 * 2, initialDelay = 1000)
+	@Scheduled(fixedDelay = 1000 * 60 * 2, initialDelay = 1000)
 	public void selectRoutesSchedules() throws InterruptedException {
-
-		System.out.println(this.prosAppKeyCOSU);
-		System.out.println(this.prosUrlSchedules);
 		
 		Calendar calendar = new GregorianCalendar();
+		
+		
 
 		int hour = calendar.get(Calendar.HOUR); // 12 hour clock
 		int hourOfDay = calendar.get(Calendar.HOUR_OF_DAY); // 24 hour clock
@@ -129,30 +133,83 @@ public class CargoSmartService {
 		int second = calendar.get(Calendar.SECOND);
 		int millisecond = calendar.get(Calendar.MILLISECOND);
 
-		logger.info("START Postgressql To Oracle " + hour + ":" + minute + ":" + second + "." + millisecond);
+		logger.info("START Postgressql To Oracle " + hour + ":" + minute + ":" + second + "." + millisecond);		
+		
+		JsonParser springParser = JsonParserFactory.getJsonParser();
+		Map<String, Object> props = springParser.parseMap(properties.getSchedules());
+		RestTemplate restTemplate = new RestTemplate();
+		int step2 = 0;
+		for (Map.Entry<String, Object> entry : props.entrySet()) {
+//			step2 = jsonRecursionPrint(++step2, entry);
+			if ("schedule".equals((entry.getKey()).toString())) {
+				List list = (List) entry.getValue();
+				System.out.println(list);	
+				for(int i=0; i<list.size(); i++) {
+					Map map = (Map) list.get(0);
+					if ("COSCO".equals(map.get("carrier"))) {
+						String carrier = (String) map.get("carrier");
+						List routes = (List) map.get("routes");
+						for(int j=0; j<routes.size(); j++) {
+							Map route = (Map) routes.get(j);
+							String startport = (String) route.get("startport");
+							List endports = (List) route.get("endport");
+							System.out.println("startport:" + startport);
+							for(int k=0; k<endports.size(); k++) {
+								String endport = (String) endports.get(k);
+								System.out.println("		endport:" + endport);
+								
+								String url=this.prosUrlSchedules+"/" + "COSU" + "?appKey=" +this.prosAppKeyCOSU + "&porID="+startport+"&fndID="+endport;
+								
+								String resp = restTemplate.getForObject(url, String.class);
+//								System.out.println("resp:" + resp);
+								logger.info(resp);
+								Map<String, Object> parse = springParser.parseMap(resp);
+								int step = 0;
+								for (Map.Entry<String, Object> result : parse.entrySet()) {
+									step = jsonRecursionPrint(++step, result);
+								}
+							}
+						}
+					}
+				}
+			}
+//			if ("carrier".equals((entry.getKey()).toString()) && "cosco".equals((entry.getValue()).toString())) {
+//				System.out.println(entry.getValue());	
+//				
+//				
+//				
+//			}
+		}
+		
+		
+//		SchedulesProperties properties = new SchedulesProperties();
+//		System.out.println("aaa:" + properties.getSchedules());
+//		System.out.println(map2);
+		
 
 
-		String url=this.prosUrlSchedules+"/" + "COSU" + "?appKey=" +this.prosAppKeyCOSU + "&porID=KRPUS&fndID=USLAX";
+
+//		String url=this.prosUrlSchedules+"/" + "COSU" + "?appKey=" +this.prosAppKeyCOSU + "&porID=KRPUS&fndID=USLAX";
 				
+//		String resp = "";
 				
 //		RestTemplate restTemplate = new RestTemplate();
 //		String resp = restTemplate.getForObject(url, String.class);
-
-		String resp = "{\"dataRange\":{\"departureFrom\":\"2020-06-11T00:00:00.000Z\",\"departureTo\":\"2020-06-24T23:59:59.999Z\"},\"requestRefNo\":\"af38921c-b420-4292-b1d0-34ab7a303be8\",\"routeGroupsList\":[{\"identification\":{\"dataSourceType\":\"SSM2014\",\"requestRefNo\":\"af38921c-b420-4292-b1d0-34ab7a303be8\"},\"carrier\":{\"_id\":\"557ab159395a5b8cdab49526\",\"carrierID\":2,\"name\":\"COSCO SHIPPING\",\"scac\":\"COSU\",\"shortName\":\"COSCO SHIPPING\",\"url\":\"http://lines.coscoshipping.com\",\"enabled\":true,\"ssmEnabled\":true,\"sortingKey\":\"coscon\",\"updatedAt\":\"2019-07-10T07:27:21.498Z\",\"updatedBy\":\"CSDev\",\"analyticsEnabled\":true},\"por\":{\"location\":{\"_id\":\"5ee1ac495f94ff0016204478\",\"source\":\"CS4\",\"unlocode\":\"KRPUS\",\"name\":\"Busan\",\"uc_name\":\"BUSAN\",\"geo\":[129.075642,35.179554],\"locationID\":\"P358\",\"csID\":358,\"csCityID\":2535304,\"type\":\"PORT\",\"fullName\":\"Busan, South Korea\",\"timezone\":\"Asia/Seoul\",\"refreshDateTime\":\"2020-06-11T04:00:09.791Z\"}},\"fnd\":{\"location\":{\"_id\":\"5ee1ac445f94ff00162040a3\",\"source\":\"CS4\",\"unlocode\":\"USLAX\",\"name\":\"Los Angeles\",\"uc_name\":\"LOS ANGELES\",\"geo\":[-118.25717,33.745753],\"locationID\":\"P426\",\"csID\":426,\"csCityID\":2532344,\"type\":\"PORT\",\"fullName\":\"Los Angeles, California, United States\",\"timezone\":\"America/Los_Angeles\",\"refreshDateTime\":\"2020-06-11T04:00:04.554Z\"}},\"route\":[{\"csRouteID\":2280240331,\"csPointPairID\":7295871,\"carrierScac\":\"COSU\",\"por\":{\"location\":{\"locationID\":\"P358\",\"name\":\"Busan\",\"unlocode\":\"KRPUS\",\"csID\":358,\"csCityId\":2535304,\"timezone\":\"Asia/Seoul\",\"facility\":{\"name\":\"Busan New Container Terminal\",\"code\":\"PUS83\",\"id\":11674,\"type\":\"Terminal\"}},\"etd\":\"2020-06-18T00:00:00.000Z\"},\"fnd\":{\"location\":{\"locationID\":\"P426\",\"name\":\"Los Angeles\",\"unlocode\":\"USLAX\",\"csID\":426,\"csCityId\":2532344,\"timezone\":\"America/Los_Angeles\",\"facility\":{\"name\":\"Long Beach Container Terminal , LLC\",\"code\":\"LGB08\",\"id\":17306,\"type\":\"Terminal\"}},\"eta\":\"2020-06-29T00:00:00.000Z\",\"arrivalTimeLocation\":{\"locationID\":\"P425\",\"name\":\"Long Beach\",\"unlocode\":\"USLGB\",\"csID\":425,\"csCityId\":2533284,\"timezone\":\"America/Los_Angeles\"}},\"transitTime\":11,\"direct\":true,\"importHaulage\":\"BOTH\",\"exportHaulage\":\"BOTH\",\"touchTime\":\"2020-06-10T15:00:26.000Z\",\"leg\":[{\"fromPoint\":{\"voyageStop\":{\"voyageStopId\":24948841,\"skip\":false},\"location\":{\"locationID\":\"P358\",\"name\":\"Busan\",\"unlocode\":\"KRPUS\",\"csID\":358,\"csCityId\":2535304,\"timezone\":\"Asia/Seoul\"},\"defaultCutoff\":\"2020-06-17T06:00:00.000Z\",\"etd\":\"2020-06-18T00:00:00.000Z\",\"gmtEtd\":\"2020-06-17T15:00:00.000Z\"},\"toPoint\":{\"voyageStop\":{\"voyageStopId\":24948842,\"skip\":false},\"location\":{\"locationID\":\"P425\",\"name\":\"Long Beach\",\"unlocode\":\"USLGB\",\"csID\":425,\"csCityId\":2533284,\"timezone\":\"America/Los_Angeles\"},\"eta\":\"2020-06-29T00:00:00.000Z\",\"gmtEta\":\"2020-06-29T07:00:00.000Z\"},\"transportMode\":\"VESSEL\",\"service\":{\"serviceID\":10025085,\"code\":\"AAC4\",\"name\":\"OOCL U.S. Southwest Coast Express Service\"},\"vessel\":{\"vesselGID\":\"V000000102\",\"name\":\"OOCL SOUTHAMPTON\",\"code\":\"QBQ\",\"IMO\":9310240},\"imoNumber\":9310240,\"externalVoyageNumber\":\"094E\",\"transitTime\":11}],\"transportSummary\":\"VESSEL:10025085:V000000102:094E\",\"defaultCutoff\":{\"cutoffTime\":\"2020-06-17T06:00:00.000Z\"},\"isPossibleDirect\":true,\"isUncertainTransitTime\":false}]}]}";
+//		resp = "{\"dataRange\":{\"departureFrom\":\"2020-06-11T00:00:00.000Z\",\"departureTo\":\"2020-06-24T23:59:59.999Z\"},\"requestRefNo\":\"af38921c-b420-4292-b1d0-34ab7a303be8\",\"routeGroupsList\":[{\"identification\":{\"dataSourceType\":\"SSM2014\",\"requestRefNo\":\"af38921c-b420-4292-b1d0-34ab7a303be8\"},\"carrier\":{\"_id\":\"557ab159395a5b8cdab49526\",\"carrierID\":2,\"name\":\"COSCO SHIPPING\",\"scac\":\"COSU\",\"shortName\":\"COSCO SHIPPING\",\"url\":\"http://lines.coscoshipping.com\",\"enabled\":true,\"ssmEnabled\":true,\"sortingKey\":\"coscon\",\"updatedAt\":\"2019-07-10T07:27:21.498Z\",\"updatedBy\":\"CSDev\",\"analyticsEnabled\":true},\"por\":{\"location\":{\"_id\":\"5ee1ac495f94ff0016204478\",\"source\":\"CS4\",\"unlocode\":\"KRPUS\",\"name\":\"Busan\",\"uc_name\":\"BUSAN\",\"geo\":[129.075642,35.179554],\"locationID\":\"P358\",\"csID\":358,\"csCityID\":2535304,\"type\":\"PORT\",\"fullName\":\"Busan, South Korea\",\"timezone\":\"Asia/Seoul\",\"refreshDateTime\":\"2020-06-11T04:00:09.791Z\"}},\"fnd\":{\"location\":{\"_id\":\"5ee1ac445f94ff00162040a3\",\"source\":\"CS4\",\"unlocode\":\"USLAX\",\"name\":\"Los Angeles\",\"uc_name\":\"LOS ANGELES\",\"geo\":[-118.25717,33.745753],\"locationID\":\"P426\",\"csID\":426,\"csCityID\":2532344,\"type\":\"PORT\",\"fullName\":\"Los Angeles, California, United States\",\"timezone\":\"America/Los_Angeles\",\"refreshDateTime\":\"2020-06-11T04:00:04.554Z\"}},\"route\":[{\"csRouteID\":2280240331,\"csPointPairID\":7295871,\"carrierScac\":\"COSU\",\"por\":{\"location\":{\"locationID\":\"P358\",\"name\":\"Busan\",\"unlocode\":\"KRPUS\",\"csID\":358,\"csCityId\":2535304,\"timezone\":\"Asia/Seoul\",\"facility\":{\"name\":\"Busan New Container Terminal\",\"code\":\"PUS83\",\"id\":11674,\"type\":\"Terminal\"}},\"etd\":\"2020-06-18T00:00:00.000Z\"},\"fnd\":{\"location\":{\"locationID\":\"P426\",\"name\":\"Los Angeles\",\"unlocode\":\"USLAX\",\"csID\":426,\"csCityId\":2532344,\"timezone\":\"America/Los_Angeles\",\"facility\":{\"name\":\"Long Beach Container Terminal , LLC\",\"code\":\"LGB08\",\"id\":17306,\"type\":\"Terminal\"}},\"eta\":\"2020-06-29T00:00:00.000Z\",\"arrivalTimeLocation\":{\"locationID\":\"P425\",\"name\":\"Long Beach\",\"unlocode\":\"USLGB\",\"csID\":425,\"csCityId\":2533284,\"timezone\":\"America/Los_Angeles\"}},\"transitTime\":11,\"direct\":true,\"importHaulage\":\"BOTH\",\"exportHaulage\":\"BOTH\",\"touchTime\":\"2020-06-10T15:00:26.000Z\",\"leg\":[{\"fromPoint\":{\"voyageStop\":{\"voyageStopId\":24948841,\"skip\":false},\"location\":{\"locationID\":\"P358\",\"name\":\"Busan\",\"unlocode\":\"KRPUS\",\"csID\":358,\"csCityId\":2535304,\"timezone\":\"Asia/Seoul\"},\"defaultCutoff\":\"2020-06-17T06:00:00.000Z\",\"etd\":\"2020-06-18T00:00:00.000Z\",\"gmtEtd\":\"2020-06-17T15:00:00.000Z\"},\"toPoint\":{\"voyageStop\":{\"voyageStopId\":24948842,\"skip\":false},\"location\":{\"locationID\":\"P425\",\"name\":\"Long Beach\",\"unlocode\":\"USLGB\",\"csID\":425,\"csCityId\":2533284,\"timezone\":\"America/Los_Angeles\"},\"eta\":\"2020-06-29T00:00:00.000Z\",\"gmtEta\":\"2020-06-29T07:00:00.000Z\"},\"transportMode\":\"VESSEL\",\"service\":{\"serviceID\":10025085,\"code\":\"AAC4\",\"name\":\"OOCL U.S. Southwest Coast Express Service\"},\"vessel\":{\"vesselGID\":\"V000000102\",\"name\":\"OOCL SOUTHAMPTON\",\"code\":\"QBQ\",\"IMO\":9310240},\"imoNumber\":9310240,\"externalVoyageNumber\":\"094E\",\"transitTime\":11}],\"transportSummary\":\"VESSEL:10025085:V000000102:094E\",\"defaultCutoff\":{\"cutoffTime\":\"2020-06-17T06:00:00.000Z\"},\"isPossibleDirect\":true,\"isUncertainTransitTime\":false}]}]}";
 		
 //		resp = "\"";
-		JsonParser springParser = JsonParserFactory.getJsonParser();
-		Map<String, Object> map = springParser.parseMap(resp);
-
-		String mapArray[] = new String[map.size()];
-		System.out.println("Items found: " + mapArray.length);
+//		JsonParser springParser = JsonParserFactory.getJsonParser();
+//		Map<String, Object> map = springParser.parseMap(resp);
+//
+//		String mapArray[] = new String[map.size()];
+//		System.out.println("Items found: " + mapArray.length);
 //		for (int i=0; i < mapArray.length; i++) {
 //			System.out.println("mapArray:" + mapArray[i]);
 //		}
 
 //		int i = 0;
-		int step = 0;
-		for (Map.Entry<String, Object> entry : map.entrySet()) {
+//		int step = 0;
+//		for (Map.Entry<String, Object> entry : map.entrySet()) {
 //				System.out.println(entry.getKey() + " = " + entry.getValue() + "?" + entry.getValue().getClass());
 //				i++;
 			
@@ -170,7 +227,7 @@ public class CargoSmartService {
 //					}
 //				}
 				
-				step = jsonRecursionPrint(++step, entry);
+//				step = jsonRecursionPrint(++step, entry);
 //				jsonObjectPrint(entry);
 				
 //				Map<String, Object> map2 = springParser.parseMap(entry.getValue().toString());
@@ -178,10 +235,21 @@ public class CargoSmartService {
 //					System.out.println(entry2.getKey() + " = " + entry2.getValue());
 //				}
 				
-		}
+//		}
 		logger.info("End Postgresql To Oracle:");
 
 	}
+	
+	
+	public List getRouteList() {
+		List list = new ArrayList();
+		Map map = new HashMap();
+		map.put("POL", "P358"); map.put("POD", "P425");
+		
+		
+		return list;
+	}
+	
 /*	
 	public int jsonRecursionPrint(int step, Object object) {
 		System.out.println("step:" + step);
