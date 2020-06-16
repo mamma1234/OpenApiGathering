@@ -135,52 +135,59 @@ public class CargoSmartService {
 
 		logger.info("START Postgressql To Oracle " + hour + ":" + minute + ":" + second + "." + millisecond);		
 		
-		JsonParser springParser = JsonParserFactory.getJsonParser();
-		Map<String, Object> props = springParser.parseMap(properties.getSchedules());
-		RestTemplate restTemplate = new RestTemplate();
-		int step2 = 0;
-		for (Map.Entry<String, Object> entry : props.entrySet()) {
-//			step2 = jsonRecursionPrint(++step2, entry);
-			if ("schedule".equals((entry.getKey()).toString())) {
-				List list = (List) entry.getValue();
-				System.out.println(list);	
-				for(int i=0; i<list.size(); i++) {
-					Map map = (Map) list.get(0);
-					if ("COSCO".equals(map.get("carrier"))) {
-						String carrier = (String) map.get("carrier");
-						List routes = (List) map.get("routes");
-						for(int j=0; j<routes.size(); j++) {
-							Map route = (Map) routes.get(j);
-							String startport = (String) route.get("startport");
-							List endports = (List) route.get("endport");
-							System.out.println("startport:" + startport);
-							for(int k=0; k<endports.size(); k++) {
-								String endport = (String) endports.get(k);
-								System.out.println("		endport:" + endport);
-								
-								String url=this.prosUrlSchedules+"/" + "COSU" + "?appKey=" +this.prosAppKeyCOSU + "&porID="+startport+"&fndID="+endport;
-								
-								String resp = restTemplate.getForObject(url, String.class);
-//								System.out.println("resp:" + resp);
-								logger.info(resp);
-								Map<String, Object> parse = springParser.parseMap(resp);
-								int step = 0;
-								for (Map.Entry<String, Object> result : parse.entrySet()) {
-									step = jsonRecursionPrint(++step, result);
+		try {
+			
+			JsonParser springParser = JsonParserFactory.getJsonParser();
+			Map<String, Object> props = springParser.parseMap(properties.getSchedules());
+			RestTemplate restTemplate = new RestTemplate();
+			int step2 = 0;
+			for (Map.Entry<String, Object> entry : props.entrySet()) {
+	//			step2 = jsonRecursionPrint(++step2, entry);
+				if ("schedule".equals((entry.getKey()).toString())) {
+					List list = (List) entry.getValue();
+					System.out.println(list);	
+					for(int i=0; i<list.size(); i++) {
+						Map map = (Map) list.get(0);
+						if ("COSCO".equals(map.get("carrier"))) {
+							String carrier = (String) map.get("carrier");
+							List routes = (List) map.get("routes");
+							for(int j=0; j<routes.size(); j++) {
+								Map route = (Map) routes.get(j);
+								String startport = (String) route.get("startport");
+								List endports = (List) route.get("endport");
+								System.out.println("startport:" + startport);
+								for(int k=0; k<endports.size(); k++) {
+									
+									
+									String endport = (String) endports.get(k);
+									System.out.println("		endport:" + endport);
+									
+									String url=this.prosUrlSchedules+"/" + "COSU" + "?appKey=" +this.prosAppKeyCOSU + "&porID="+startport+"&fndID="+endport;
+									
+									try {
+										String resp = restTemplate.getForObject(url, String.class);
+		//								System.out.println("resp:" + resp);
+										logger.info(resp);
+										Map<String, Object> parse = springParser.parseMap(resp);
+										int step = 0;
+										for (Map.Entry<String, Object> result : parse.entrySet()) {
+											step = jsonRecursionPrint(++step, result);
+										}
+									} catch(Exception e) {
+										e.printStackTrace();
+									}
+									
 								}
 							}
 						}
 					}
 				}
+
 			}
-//			if ("carrier".equals((entry.getKey()).toString()) && "cosco".equals((entry.getValue()).toString())) {
-//				System.out.println(entry.getValue());	
-//				
-//				
-//				
-//			}
+			
+		} catch (Exception e){
+			e.printStackTrace();
 		}
-		
 		
 //		SchedulesProperties properties = new SchedulesProperties();
 //		System.out.println("aaa:" + properties.getSchedules());
@@ -241,14 +248,14 @@ public class CargoSmartService {
 	}
 	
 	
-	public List getRouteList() {
-		List list = new ArrayList();
-		Map map = new HashMap();
-		map.put("POL", "P358"); map.put("POD", "P425");
-		
-		
-		return list;
-	}
+//	public List getRouteList() {
+//		List list = new ArrayList();
+//		Map map = new HashMap();
+//		map.put("POL", "P358"); map.put("POD", "P425");
+//		
+//		
+//		return list;
+//	}
 	
 /*	
 	public int jsonRecursionPrint(int step, Object object) {
