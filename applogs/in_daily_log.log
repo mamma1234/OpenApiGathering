@@ -39,3 +39,7 @@
 [INFO ] 2020-06-16 14:36:46.584 [main] OpenApiGatheringApplication - No active profile set, falling back to default profiles: default
 [INFO ] 2020-06-16 14:36:49.586 [main] OpenApiGatheringApplication - Started OpenApiGatheringApplication in 3.483 seconds (JVM running for 6.161)
 [INFO ] 2020-06-16 14:36:50.583 [pool-2-thread-1] CargoSmartService - START Postgressql To Oracle 2:36:50.582
+[INFO ] 2020-06-16 14:39:09.519 [main] OpenApiGatheringApplication - Starting OpenApiGatheringApplication on o-PC with PID 38124 (C:\egovframeworkSample\eclipse-jee-neon-2-win32-x86_64\workspace\OpenApiGathering\target\classes started by Administrator in C:\egovframeworkSample\eclipse-jee-neon-2-win32-x86_64\workspace\OpenApiGathering)
+[INFO ] 2020-06-16 14:39:09.522 [main] OpenApiGatheringApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2020-06-16 14:39:12.564 [main] OpenApiGatheringApplication - Started OpenApiGatheringApplication in 3.468 seconds (JVM running for 4.402)
+[INFO ] 2020-06-16 14:39:13.560 [pool-2-thread-1] CargoSmartService - START Postgressql To Oracle 2:39:13.559

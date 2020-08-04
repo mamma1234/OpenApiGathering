@@ -48,3 +48,8 @@ Caused by: java.net.ConnectException: Connection timed out: connect
 	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:53) ~[spring-web-4.3.10.RELEASE.jar:4.3.10.RELEASE]
 	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:652) ~[spring-web-4.3.10.RELEASE.jar:4.3.10.RELEASE]
 	... 16 more
+[INFO ] 2020-06-16 14:39:09.608 [main] AnnotationConfigApplicationContext - Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@7e6f74c: startup date [Tue Jun 16 14:39:09 KST 2020]; root of context hierarchy
+[WARN ] 2020-06-16 14:39:10.061 [main] ClassPathMapperScanner - No MyBatis mapper was found in '[com.klnet.application.Db1AbstractDAO]' package. Please check your configuration.
+[WARN ] 2020-06-16 14:39:10.065 [main] ClassPathMapperScanner - No MyBatis mapper was found in '[com.klnet.application.Db2AbstractDAO]' package. Please check your configuration.
+[WARN ] 2020-06-16 14:39:10.197 [main] ClassPathMapperScanner - No MyBatis mapper was found in '[com.klnet.application]' package. Please check your configuration.
+[INFO ] 2020-06-16 14:39:12.540 [main] AnnotationMBeanExporter - Registering beans for JMX exposure on startup
