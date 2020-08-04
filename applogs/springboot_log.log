@@ -53,3 +53,13 @@ Caused by: java.net.ConnectException: Connection timed out: connect
 [WARN ] 2020-06-16 14:39:10.065 [main] ClassPathMapperScanner - No MyBatis mapper was found in '[com.klnet.application.Db2AbstractDAO]' package. Please check your configuration.
 [WARN ] 2020-06-16 14:39:10.197 [main] ClassPathMapperScanner - No MyBatis mapper was found in '[com.klnet.application]' package. Please check your configuration.
 [INFO ] 2020-06-16 14:39:12.540 [main] AnnotationMBeanExporter - Registering beans for JMX exposure on startup
+[INFO ] 2020-08-04 19:29:08.660 [main] AnnotationConfigApplicationContext - Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@c730b35: startup date [Tue Aug 04 19:29:08 KST 2020]; root of context hierarchy
+[WARN ] 2020-08-04 19:29:10.496 [main] ClassPathMapperScanner - No MyBatis mapper was found in '[com.klnet.application.Db1AbstractDAO]' package. Please check your configuration.
+[WARN ] 2020-08-04 19:29:10.501 [main] ClassPathMapperScanner - No MyBatis mapper was found in '[com.klnet.application.Db2AbstractDAO]' package. Please check your configuration.
+[WARN ] 2020-08-04 19:29:10.974 [main] ClassPathMapperScanner - No MyBatis mapper was found in '[com.klnet.application]' package. Please check your configuration.
+[INFO ] 2020-08-04 19:29:15.968 [main] AnnotationMBeanExporter - Registering beans for JMX exposure on startup
+[INFO ] 2020-08-04 19:30:10.425 [main] AnnotationConfigApplicationContext - Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@c730b35: startup date [Tue Aug 04 19:30:10 KST 2020]; root of context hierarchy
+[WARN ] 2020-08-04 19:30:11.930 [main] ClassPathMapperScanner - No MyBatis mapper was found in '[com.klnet.application.Db1AbstractDAO]' package. Please check your configuration.
+[WARN ] 2020-08-04 19:30:11.935 [main] ClassPathMapperScanner - No MyBatis mapper was found in '[com.klnet.application.Db2AbstractDAO]' package. Please check your configuration.
+[WARN ] 2020-08-04 19:30:12.235 [main] ClassPathMapperScanner - No MyBatis mapper was found in '[com.klnet.application]' package. Please check your configuration.
+[INFO ] 2020-08-04 19:30:15.846 [main] AnnotationMBeanExporter - Registering beans for JMX exposure on startup

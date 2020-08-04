@@ -167,7 +167,7 @@ public class CargoSmartService {
 									System.out.println("		endport:" + endport);
 									
 									String url=this.prosUrlSchedules+"/" + carrier + "?appKey=" +appKey + "&porID="+startport+"&fndID="+endport;
-									
+System.out.println("url:" + url);
 									try {
 										String resp = restTemplate.getForObject(url, String.class);
 		//								System.out.println("resp:" + resp);
