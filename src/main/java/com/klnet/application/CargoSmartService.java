@@ -1,5 +1,6 @@
 package com.klnet.application;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -186,10 +187,10 @@ System.out.println("url:" + url);
 										Map _routeGroupsList0 = (Map) _routeGroupsList.get(0);
 
 										Map<String, Object> _carrier = (Map) _routeGroupsList0.get("carrier");
-										String _scac = (String) _carrier.get("scac"); //NADCA_3039
-										String _name = (String) _carrier.get("name"); //NADCA_312A
-										String _url = (String) _carrier.get("url"); //NADCA_312B
-										String _updatedBy = (String) _carrier.get("updatedBy"); //CTAAL_3413
+										String _scac = nullConvert(_carrier.get("scac")); //NADCA_3039
+										String _name = nullConvert(_carrier.get("name")); //NADCA_312A
+										String _url = nullConvert(_carrier.get("url")); //NADCA_312B
+										String _updatedBy = nullConvert(_carrier.get("updatedBy")); //CTAAL_3413
 System.out.println("_scac"+_scac);
 System.out.println("_name"+_name);
 System.out.println("_url"+_url);
@@ -198,63 +199,63 @@ System.out.println("_updatedBy"+_updatedBy);
 
 										Map _por = (Map) _routeGroupsList0.get("por");
 										Map<String, Object> _por_location = (Map) _por.get("location");
-										String _por_unlocode = (String) _por_location.get("unlocode"); //LOC88_3225
-										String _por_uc_name = (String) _por_location.get("uc_name"); //LOC88_3224
+										String _por_unlocode = nullConvert(_por_location.get("unlocode")); //LOC88_3225
+										String _por_uc_name = nullConvert(_por_location.get("uc_name")); //LOC88_3224
 System.out.println("_por_unlocode"+_por_unlocode);
 System.out.println("_por_uc_name"+_por_uc_name);										
 										
 										
 										Map _fnd = (Map) _routeGroupsList0.get("fnd");
 										Map<String, Object> _fnd_location = (Map) _fnd.get("location");
-										String _fnd_unlocode = (String) _fnd_location.get("unlocode"); //LOC88_3225
-										String _fnd_uc_name = (String) _fnd_location.get("uc_name"); //LOC88_3224
+										String _fnd_unlocode = nullConvert(_fnd_location.get("unlocode")); //LOC88_3225
+										String _fnd_uc_name = nullConvert(_fnd_location.get("uc_name")); //LOC88_3224
 System.out.println("_fnd_unlocode"+_fnd_unlocode);
 System.out.println("_fnd_uc_name"+_fnd_uc_name);										
 
 										
 										List _route = (List) _routeGroupsList0.get("route");
 										Map _route0 = (Map) _route.get(0);
-										String _route0_carrierScac = (String) _route0.get("carrierScac"); //TDT20_3127
+										String _route0_carrierScac = nullConvert(_route0.get("carrierScac")); //TDT20_3127
 System.out.println("_route0_carrierScac"+_route0_carrierScac);
 										
 										List _route0_leg = (List) _route0.get("leg");
 										Map _route0_leg0 = (Map) _route0_leg.get(0);
 										Map<String, Object> _route0_leg0_service = (Map) _route0_leg0.get("service");
-										String _route0_leg0_service_code = (String) _route0_leg0_service.get("code"); //FTXAAI4440
+										String _route0_leg0_service_code = nullConvert(_route0_leg0_service.get("code")); //FTXAAI4440
 System.out.println("_route0_leg0_service_code"+_route0_leg0_service_code);
-										String _route0_leg0_externalVoyageNumber = (String) _route0_leg0.get("externalVoyageNumber"); //TDT20_8028
+										String _route0_leg0_externalVoyageNumber = nullConvert(_route0_leg0.get("externalVoyageNumber")); //TDT20_8028
 System.out.println("_route0_leg0_externalVoyageNumber"+_route0_leg0_externalVoyageNumber);
 										Integer _route0_leg0_imoNumber = (Integer) _route0_leg0.get("imoNumber"); //TDT20_8213
 System.out.println("_route0_leg0_imoNumber"+_route0_leg0_imoNumber);
 										Map<String, Object> _route0_leg0_vessel = (Map) _route0_leg0.get("vessel");
-										String _route0_leg0_vessel_name = (String) _route0_leg0_vessel.get("name"); //TDT20_8212
+										String _route0_leg0_vessel_name = nullConvert(_route0_leg0_vessel.get("name")); //TDT20_8212
 System.out.println("_route0_leg0_vessel_name"+_route0_leg0_vessel_name);
 										Map<String, Object> _route0_leg0_fromPoint = (Map) _route0_leg0.get("fromPoint");
 										Map<String, Object> _route0_leg0_fromPoint_location = (Map) _route0_leg0_fromPoint.get("location");										
-										String _route0_leg0_fromPoint_location_unlocode = (String) _route0_leg0_fromPoint_location.get("unlocode"); //LOC9__3225
+										String _route0_leg0_fromPoint_location_unlocode = nullConvert(_route0_leg0_fromPoint_location.get("unlocode")); //LOC9__3225
 System.out.println("_route0_leg0_fromPoint_location_unlocode"+_route0_leg0_fromPoint_location_unlocode);										
-										String _route0_leg0_fromPoint_location_name = (String) _route0_leg0_fromPoint_location.get("name"); //LOC9__3224
+										String _route0_leg0_fromPoint_location_name = nullConvert(_route0_leg0_fromPoint_location.get("name")); //LOC9__3224
 System.out.println("_route0_leg0_fromPoint_location_name"+_route0_leg0_fromPoint_location_name);										
-										String _route0_leg0_fromPoint_etd = (String) _route0_leg0_fromPoint.get("etd"); //DTM133___9
+										String _route0_leg0_fromPoint_etd = nullConvert(_route0_leg0_fromPoint.get("etd")); //DTM133___9
 System.out.println("_route0_leg0_fromPoint_etd"+_route0_leg0_fromPoint_etd); 
 										Map<String, Object> _route0_leg0_toPoint = (Map) _route0_leg0.get("toPoint");
 										Map<String, Object> _route0_leg0_toPoint_location = (Map) _route0_leg0_toPoint.get("location");										
-										String _route0_leg0_toPoint_location_unlocode = (String) _route0_leg0_toPoint_location.get("unlocode"); //LOC11_3225
+										String _route0_leg0_toPoint_location_unlocode = nullConvert(_route0_leg0_toPoint_location.get("unlocode")); //LOC11_3225
 System.out.println("_route0_leg0_toPoint_location_unlocode"+_route0_leg0_toPoint_location_unlocode);										
-										String _route0_leg0_toPoint_location_name = (String) _route0_leg0_toPoint_location.get("name"); //LOC11_3224
+										String _route0_leg0_toPoint_location_name = nullConvert(_route0_leg0_toPoint_location.get("name")); //LOC11_3224
 System.out.println("_route0_leg0_toPoint_location_name"+_route0_leg0_toPoint_location_name);										
-										String _route0_leg0_toPoint_eta = (String) _route0_leg0_toPoint.get("eta"); //DTM132__11
+										String _route0_leg0_toPoint_eta = nullConvert(_route0_leg0_toPoint.get("eta")); //DTM132__11
 System.out.println("_route0_leg0_toPoint_etd"+_route0_leg0_toPoint_eta); 
 
 										Map<String, Object> _route0_fnd = (Map) _route0.get("fnd");
 										Map<String, Object> _route0_fnd_location = (Map) _route0_fnd.get("location");										
-										String _route0_fnd_location_unicode = (String) _route0_fnd_location.get("unlocode"); //LOC20_3225
+										String _route0_fnd_location_unicode = nullConvert(_route0_fnd_location.get("unlocode")); //LOC20_3225
 System.out.println("_route0_fnd_location_unicode"+_route0_fnd_location_unicode);
-										String _route0_fnd_location_name = (String) _route0_fnd_location.get("name"); //LOC20_3224
+										String _route0_fnd_location_name = nullConvert(_route0_fnd_location.get("name")); //LOC20_3224
 System.out.println("_route0_fnd_location_name"+_route0_fnd_location_name);
 
 										Map<String, Object> _route0_defaultCutoff = (Map) _route0.get("defaultCutoff");
-										String _route0_defaultCutoff_cutoffTime = (String) _route0_defaultCutoff.get("cutoffTime"); //DTM1802380
+										String _route0_defaultCutoff_cutoffTime = nullConvert(_route0_defaultCutoff.get("cutoffTime")); //DTM1802380
 System.out.println("_route0_defaultCutoff_cutoffTime"+_route0_defaultCutoff_cutoffTime);
 										
 /*
@@ -498,4 +499,28 @@ _route0_defaultCutoff_cutoffTime2020-08-15T04:00:00.000Z
 		}
 		return --step;
 	}
+
+	public static String nullConvert(Object src) {
+		// if (src != null &&
+		// src.getClass().getName().equals("java.math.BigDecimal")) {
+		if (src != null && src instanceof java.math.BigDecimal) {
+			return ((BigDecimal) src).toString();
+		}
+
+		if (src == null || src.equals("null")) {
+			return "";
+		} else {
+			return (String.valueOf(src)).trim();
+		}
+	}
+
+	public static String nullConvert(String src) {
+
+		if (src == null || src.equals("null") || "".equals(src) || " ".equals(src)) {
+			return "";
+		} else {
+			return src.trim();
+		}
+	}	
+	
 }
