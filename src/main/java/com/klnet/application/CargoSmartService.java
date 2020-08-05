@@ -149,7 +149,7 @@ public class CargoSmartService {
 				Map<String, Object> props = springParser.parseMap(properties.getSchedules());
 				RestTemplate restTemplate = new RestTemplate();
 				int step2 = 0;
-				Map schedule = new HashMap();
+				
 				
 				for (Map.Entry<String, Object> entry : props.entrySet()) {
 		//			step2 = jsonRecursionPrint(++step2, entry);
@@ -169,7 +169,7 @@ public class CargoSmartService {
 									System.out.println("startport:" + startport);
 									for(int k=0; k<endports.size(); k++) {
 										
-										
+										Map schedule = new HashMap();
 										String endport = (String) endports.get(k);
 										System.out.println("		endport:" + endport);
 										
