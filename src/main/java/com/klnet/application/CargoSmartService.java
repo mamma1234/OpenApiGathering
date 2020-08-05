@@ -138,10 +138,10 @@ public class CargoSmartService {
 		
 		try {
 			
-			if ( ebizDAO.svcStatus() < 1 ) {
-				logger.info("ROUTES SCHEDULE SLEEP " + hour +":"  + minute+":" + second+"." + millisecond);
-				Thread.sleep(60000);
-			} else {					
+//			if ( ebizDAO.svcStatus() < 1 ) {
+//				logger.info("ROUTES SCHEDULE SLEEP " + hour +":"  + minute+":" + second+"." + millisecond);
+//				Thread.sleep(60000);
+//			} else {					
 				JsonParser springParser = JsonParserFactory.getJsonParser();
 				
 	//			String tmp = properties.getSchedules().replaceAll(" ", "");
@@ -326,7 +326,7 @@ System.out.println("schedule:"+schedule);
 					}
 	
 				}
-			}
+//			}
 		} catch (Exception e){
 			e.printStackTrace();
 		}
