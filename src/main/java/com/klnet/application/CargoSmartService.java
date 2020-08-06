@@ -169,12 +169,13 @@ public class CargoSmartService {
 									System.out.println("startport:" + startport);
 									for(int k=0; k<endports.size(); k++) {
 										
-										Map schedule = new HashMap();
+										
 										String endport = (String) endports.get(k);
 										System.out.println("		endport:" + endport);
 										
 										String url=this.prosUrlSchedules+"/" + carrier + "?appKey=" +appKey + "&porID="+startport+"&fndID="+endport;
-	System.out.println("url:" + url);
+//	System.out.println("url:" + url);
+	logger.info("url:" + url);
 										try {
 											String resp = restTemplate.getForObject(url, String.class);
 			//								System.out.println("resp:" + resp);
@@ -190,130 +191,154 @@ public class CargoSmartService {
 											
 											List _routeGroupsList = (List) parse.get("routeGroupsList");
 	//										System.out.println(_routeGroupsList);
-											Map _routeGroupsList0 = (Map) _routeGroupsList.get(0);
-	
-											Map<String, Object> _carrier = (Map) _routeGroupsList0.get("carrier");
-											String _scac = nullConvert(_carrier.get("scac")); //NADCA_3039
-											String _name = nullConvert(_carrier.get("name")); //NADCA_312A
-											String _url = nullConvert(_carrier.get("url")); //NADCA_312B
-											String _updatedBy = nullConvert(_carrier.get("updatedBy")); //CTAAL_3413
-	System.out.println("_scac"+_scac);
-	System.out.println("_name"+_name);
-	System.out.println("_url"+_url);
-	System.out.println("_updatedBy"+_updatedBy);									
-	schedule.put("NADCA_3039", _scac);
-	schedule.put("NADCA_312A", _name);
-	schedule.put("NADCA_312B", _url);
-	schedule.put("CTAAL_3413", _updatedBy);
-	
-											Map _por = (Map) _routeGroupsList0.get("por");
-											Map<String, Object> _por_location = (Map) _por.get("location");
-											String _por_unlocode = nullConvert(_por_location.get("unlocode")); //LOC88_3225
-											String _por_uc_name = nullConvert(_por_location.get("uc_name")); //LOC88_3224
-	System.out.println("_por_unlocode"+_por_unlocode);
-	System.out.println("_por_uc_name"+_por_uc_name);																			
-	schedule.put("LOC88_3225", _por_unlocode);
-	schedule.put("LOC88_3224", _por_uc_name);
-											
-											Map _fnd = (Map) _routeGroupsList0.get("fnd");
-											Map<String, Object> _fnd_location = (Map) _fnd.get("location");
-											String _fnd_unlocode = nullConvert(_fnd_location.get("unlocode")); //LOC88_3225
-											String _fnd_uc_name = nullConvert(_fnd_location.get("uc_name")); //LOC88_3224
-	System.out.println("_fnd_unlocode"+_fnd_unlocode);
-	System.out.println("_fnd_uc_name"+_fnd_uc_name);										
-	schedule.put("LOC88_3225", _fnd_unlocode);
-	schedule.put("LOC88_3224", _fnd_uc_name);
-											
-											List _route = (List) _routeGroupsList0.get("route");
-											Map _route0 = (Map) _route.get(0);
-											String _route0_carrierScac = nullConvert(_route0.get("carrierScac")); //TDT20_3127
-	System.out.println("_route0_carrierScac"+_route0_carrierScac);
-	schedule.put("TDT20_3127", _route0_carrierScac);
-	
-											List _route0_leg = (List) _route0.get("leg");
-											Map _route0_leg0 = (Map) _route0_leg.get(0);
-											Map<String, Object> _route0_leg0_service = (Map) _route0_leg0.get("service");
-											String _route0_leg0_service_code = nullConvert(_route0_leg0_service.get("code")); //FTXAAI4440
-	System.out.println("_route0_leg0_service_code"+_route0_leg0_service_code);
-											String _route0_leg0_externalVoyageNumber = nullConvert(_route0_leg0.get("externalVoyageNumber")); //TDT20_8028
-	System.out.println("_route0_leg0_externalVoyageNumber"+_route0_leg0_externalVoyageNumber);
-											Integer _route0_leg0_imoNumber = (Integer) _route0_leg0.get("imoNumber"); //TDT20_8213
-	System.out.println("_route0_leg0_imoNumber"+_route0_leg0_imoNumber);
-											Map<String, Object> _route0_leg0_vessel = (Map) _route0_leg0.get("vessel");
-											String _route0_leg0_vessel_name = nullConvert(_route0_leg0_vessel.get("name")); //TDT20_8212
-	System.out.println("_route0_leg0_vessel_name"+_route0_leg0_vessel_name);
-	schedule.put("FTXAAI4440", _route0_leg0_service_code);
-	schedule.put("TDT20_8028", _route0_leg0_externalVoyageNumber);
-	schedule.put("TDT20_8213", _route0_leg0_imoNumber);
-	schedule.put("TDT20_8212", _route0_leg0_vessel_name);
-	
-											Map<String, Object> _route0_leg0_fromPoint = (Map) _route0_leg0.get("fromPoint");
-											Map<String, Object> _route0_leg0_fromPoint_location = (Map) _route0_leg0_fromPoint.get("location");										
-											String _route0_leg0_fromPoint_location_unlocode = nullConvert(_route0_leg0_fromPoint_location.get("unlocode")); //LOC9__3225
-	System.out.println("_route0_leg0_fromPoint_location_unlocode"+_route0_leg0_fromPoint_location_unlocode);										
-											String _route0_leg0_fromPoint_location_name = nullConvert(_route0_leg0_fromPoint_location.get("name")); //LOC9__3224
-	System.out.println("_route0_leg0_fromPoint_location_name"+_route0_leg0_fromPoint_location_name);										
-											String _route0_leg0_fromPoint_etd = nullConvert(_route0_leg0_fromPoint.get("etd")); //DTM133___9
-	System.out.println("_route0_leg0_fromPoint_etd"+_route0_leg0_fromPoint_etd);
-	schedule.put("LOC9__3225", _route0_leg0_fromPoint_location_unlocode);
-	schedule.put("LOC9__3224", _route0_leg0_fromPoint_location_name);
-	schedule.put("DTM133___9", _route0_leg0_fromPoint_etd);
-	
-											Map<String, Object> _route0_leg0_toPoint = (Map) _route0_leg0.get("toPoint");
-											Map<String, Object> _route0_leg0_toPoint_location = (Map) _route0_leg0_toPoint.get("location");										
-											String _route0_leg0_toPoint_location_unlocode = nullConvert(_route0_leg0_toPoint_location.get("unlocode")); //LOC11_3225
-	System.out.println("_route0_leg0_toPoint_location_unlocode"+_route0_leg0_toPoint_location_unlocode);										
-											String _route0_leg0_toPoint_location_name = nullConvert(_route0_leg0_toPoint_location.get("name")); //LOC11_3224
-	System.out.println("_route0_leg0_toPoint_location_name"+_route0_leg0_toPoint_location_name);										
-											String _route0_leg0_toPoint_eta = nullConvert(_route0_leg0_toPoint.get("eta")); //DTM132__11
-	System.out.println("_route0_leg0_toPoint_eta"+_route0_leg0_toPoint_eta); 
-	schedule.put("LOC11_3225", _route0_leg0_toPoint_location_unlocode);
-	schedule.put("LOC11_3224", _route0_leg0_toPoint_location_name);
-	schedule.put("DTM132__11", _route0_leg0_toPoint_eta);
-	
-	
-											Map<String, Object> _route0_fnd = (Map) _route0.get("fnd");
-											Map<String, Object> _route0_fnd_location = (Map) _route0_fnd.get("location");										
-											String _route0_fnd_location_unicode = nullConvert(_route0_fnd_location.get("unlocode")); //LOC20_3225
-	System.out.println("_route0_fnd_location_unicode"+_route0_fnd_location_unicode);
-											String _route0_fnd_location_name = nullConvert(_route0_fnd_location.get("name")); //LOC20_3224
-	System.out.println("_route0_fnd_location_name"+_route0_fnd_location_name);
-	schedule.put("LOC20_3225", _route0_fnd_location_unicode);
-	schedule.put("LOC20_3224", _route0_fnd_location_name);
-	
-											Map<String, Object> _route0_defaultCutoff = (Map) _route0.get("defaultCutoff");
-											String _route0_defaultCutoff_cutoffTime = nullConvert(_route0_defaultCutoff.get("cutoffTime")); //DTM180___9
-	System.out.println("_route0_defaultCutoff_cutoffTime"+_route0_defaultCutoff_cutoffTime);
-	schedule.put("DTM180___9", _route0_defaultCutoff_cutoffTime);
-	
-	
-	/*
-	_scacCOSU
-	_nameCOSCO SHIPPING
-	_urlhttp://lines.coscoshipping.com
-	_updatedByCSDev
-	_por_unlocodeKRPUS
-	_por_uc_nameBUSAN
-	_fnd_unlocodeDZALG
-	_fnd_uc_nameALGIERS
-	_route0_carrierScacCOSU
-	_route0_leg0_service_codeAEM3
-	_route0_leg0_externalVoyageNumber0BX7BW1MA
-	_route0_leg0_imoNumber9705067
-	_route0_leg0_vessel_nameCMA CGM TIGRIS
-	_route0_leg0_fromPoint_location_unlocodeKRPUS
-	_route0_leg0_fromPoint_location_nameBusan
-	_route0_leg0_fromPoint_etd2020-08-16T00:00:00.000Z
-	_route0_leg0_toPoint_location_unlocodeGRPIR
-	_route0_leg0_toPoint_location_namePiraeus
-	_route0_leg0_toPoint_etd2020-09-27T00:00:00.000Z
-	_route0_fnd_location_unicodeDZALG
-	_route0_fnd_location_nameAlgiers
-	_route0_defaultCutoff_cutoffTime2020-08-15T04:00:00.000Z
-	*/
-	
-System.out.println("schedule:"+schedule);
-											
+											for (int rglidx=0; i<_routeGroupsList.size(); rglidx++) {
+												
+												Map schedule_hd = new HashMap();
+												
+												if (rglidx == 0) {
+													Map _routeGroupsList$map = (Map) _routeGroupsList.get(rglidx);
+												 
+													
+													Map<String, Object> _carrier = (Map) _routeGroupsList$map.get("carrier");
+													String _scac = nullConvert(_carrier.get("scac")); //NADCA_3039
+													String _name = nullConvert(_carrier.get("name")); //NADCA_312A
+													String _url = nullConvert(_carrier.get("url")); //NADCA_312B
+													String _updatedBy = nullConvert(_carrier.get("updatedBy")); //CTAAL_3413
+//													System.out.println("_scac"+_scac);
+//													System.out.println("_name"+_name);
+//													System.out.println("_url"+_url);
+//													System.out.println("_updatedBy"+_updatedBy);									
+													schedule_hd.put("NADCA_3039", _scac);
+													schedule_hd.put("NADCA_312A", _name);
+													schedule_hd.put("NADCA_312B", _url);
+													schedule_hd.put("CTAAL_3413", _updatedBy);
+													
+													Map _por = (Map) _routeGroupsList$map.get("por");
+													Map<String, Object> _por_location = (Map) _por.get("location");
+													String _por_unlocode = nullConvert(_por_location.get("unlocode")); //LOC88_3225
+													String _por_uc_name = nullConvert(_por_location.get("uc_name")); //LOC88_3224
+//													System.out.println("_por_unlocode"+_por_unlocode);
+//													System.out.println("_por_uc_name"+_por_uc_name);																			
+													schedule_hd.put("LOC88_3225", _por_unlocode);
+													schedule_hd.put("LOC88_3224", _por_uc_name);
+													
+													Map _fnd = (Map) _routeGroupsList$map.get("fnd");
+													Map<String, Object> _fnd_location = (Map) _fnd.get("location");
+													String _fnd_unlocode = nullConvert(_fnd_location.get("unlocode")); //LOC88_3225
+													String _fnd_uc_name = nullConvert(_fnd_location.get("uc_name")); //LOC88_3224
+//													System.out.println("_fnd_unlocode"+_fnd_unlocode);
+//													System.out.println("_fnd_uc_name"+_fnd_uc_name);										
+													schedule_hd.put("LOC88_3225", _fnd_unlocode);
+													schedule_hd.put("LOC88_3224", _fnd_uc_name);
+													
+													List _route = (List) _routeGroupsList$map.get("route");
+													for(int ridx=0; ridx<_route.size(); ridx++) {
+														Map _route$map = (Map) _route.get(ridx);
+														
+														String _route$map_carrierScac = nullConvert(_route$map.get("carrierScac")); //TDT20_3127
+//														System.out.println("_route$map_carrierScac"+_route$map_carrierScac);
+														schedule_hd.put("TDT20_3127", _route$map_carrierScac);
+														
+														
+														Map<String, Object> _route$map_fnd = (Map) _route$map.get("fnd");
+														Map<String, Object> _route$map_fnd_location = (Map) _route$map_fnd.get("location");										
+														String _route$map_fnd_location_unicode = nullConvert(_route$map_fnd_location.get("unlocode")); //LOC20_3225
+//														System.out.println("_route$map_fnd_location_unicode"+_route$map_fnd_location_unicode);
+														String _route$map_fnd_location_name = nullConvert(_route$map_fnd_location.get("name")); //LOC20_3224
+//														System.out.println("_route$map_fnd_location_name"+_route$map_fnd_location_name);
+														schedule_hd.put("LOC20_3225", _route$map_fnd_location_unicode);
+														schedule_hd.put("LOC20_3224", _route$map_fnd_location_name);
+														
+														Map<String, Object> _route$map_defaultCutoff = (Map) _route$map.get("defaultCutoff");
+														String _route$map_defaultCutoff_cutoffTime = nullConvert(_route$map_defaultCutoff.get("cutoffTime")); //DTM180___9
+//														System.out.println("_route$map_defaultCutoff_cutoffTime"+_route$map_defaultCutoff_cutoffTime);
+														schedule_hd.put("DTM180___9", _route$map_defaultCutoff_cutoffTime);
+														
+														//HD 인서트
+														
+														
+														List _route$map_leg = (List) _route$map.get("leg");
+														for(int rlidx=0; rlidx<_route$map_leg.size(); rlidx++) {
+															Map schedule_tdt = new HashMap();
+															
+															Map _route$map_leg$map = (Map) _route$map_leg.get(rlidx);
+														
+															Map<String, Object> _route$map_leg$map_service = (Map) _route$map_leg$map.get("service");
+															String _route$map_leg$map_service_code = nullConvert(_route$map_leg$map_service.get("code")); //FTXAAI4440
+//															System.out.println("_route$map_leg$map_service_code"+_route$map_leg$map_service_code);
+															String _route$map_leg$map_externalVoyageNumber = nullConvert(_route$map_leg$map.get("externalVoyageNumber")); //TDT20_8028
+//															System.out.println("_route$map_leg$map_externalVoyageNumber"+_route$map_leg$map_externalVoyageNumber);
+															Integer _route$map_leg$map_imoNumber = (Integer) _route$map_leg$map.get("imoNumber"); //TDT20_8213
+//															System.out.println("_route$map_leg$map_imoNumber"+_route$map_leg$map_imoNumber);
+															Map<String, Object> _route$map_leg$map_vessel = (Map) _route$map_leg$map.get("vessel");
+															String _route$map_leg$map_vessel_name = nullConvert(_route$map_leg$map_vessel.get("name")); //TDT20_8212
+//															System.out.println("_route$map_leg$map_vessel_name"+_route$map_leg$map_vessel_name);
+															schedule_tdt.put("FTXAAI4440", _route$map_leg$map_service_code);
+															schedule_tdt.put("TDT20_8028", _route$map_leg$map_externalVoyageNumber);
+															schedule_tdt.put("TDT20_8213", _route$map_leg$map_imoNumber);
+															schedule_tdt.put("TDT20_8212", _route$map_leg$map_vessel_name);
+															
+															Map<String, Object> _route$map_leg$map_fromPoint = (Map) _route$map_leg$map.get("fromPoint");
+															Map<String, Object> _route$map_leg$map_fromPoint_location = (Map) _route$map_leg$map_fromPoint.get("location");										
+															String _route$map_leg$map_fromPoint_location_unlocode = nullConvert(_route$map_leg$map_fromPoint_location.get("unlocode")); //LOC9__3225
+//															System.out.println("_route$map_leg$map_fromPoint_location_unlocode"+_route$map_leg$map_fromPoint_location_unlocode);										
+															String _route$map_leg$map_fromPoint_location_name = nullConvert(_route$map_leg$map_fromPoint_location.get("name")); //LOC9__3224
+//															System.out.println("_route$map_leg$map_fromPoint_location_name"+_route$map_leg$map_fromPoint_location_name);										
+															String _route$map_leg$map_fromPoint_etd = nullConvert(_route$map_leg$map_fromPoint.get("etd")); //DTM133___9
+//															System.out.println("_route$map_leg$map_fromPoint_etd"+_route$map_leg$map_fromPoint_etd);
+															schedule_tdt.put("LOC9__3225", _route$map_leg$map_fromPoint_location_unlocode);
+															schedule_tdt.put("LOC9__3224", _route$map_leg$map_fromPoint_location_name);
+															schedule_tdt.put("DTM133___9", _route$map_leg$map_fromPoint_etd);
+															
+															Map<String, Object> _route$map_leg$map_toPoint = (Map) _route$map_leg$map.get("toPoint");
+															Map<String, Object> _route$map_leg$map_toPoint_location = (Map) _route$map_leg$map_toPoint.get("location");										
+															String _route$map_leg$map_toPoint_location_unlocode = nullConvert(_route$map_leg$map_toPoint_location.get("unlocode")); //LOC11_3225
+//															System.out.println("_route$map_leg$map_toPoint_location_unlocode"+_route$map_leg$map_toPoint_location_unlocode);										
+															String _route$map_leg$map_toPoint_location_name = nullConvert(_route$map_leg$map_toPoint_location.get("name")); //LOC11_3224
+//															System.out.println("_route$map_leg$map_toPoint_location_name"+_route$map_leg$map_toPoint_location_name);										
+															String _route$map_leg$map_toPoint_eta = nullConvert(_route$map_leg$map_toPoint.get("eta")); //DTM132__11
+//															System.out.println("_route$map_leg$map_toPoint_eta"+_route$map_leg$map_toPoint_eta); 
+															schedule_tdt.put("LOC11_3225", _route$map_leg$map_toPoint_location_unlocode);
+															schedule_tdt.put("LOC11_3224", _route$map_leg$map_toPoint_location_name);
+															schedule_tdt.put("DTM132__11", _route$map_leg$map_toPoint_eta);
+														
+															//TDT 인서트
+
+															/*
+		_scacCOSU
+		_nameCOSCO SHIPPING
+		_urlhttp://lines.coscoshipping.com
+		_updatedByCSDev
+		_por_unlocodeKRPUS
+		_por_uc_nameBUSAN
+		_fnd_unlocodeDZALG
+		_fnd_uc_nameALGIERS
+		_route$map_carrierScacCOSU
+		_route$map_leg$map_service_codeAEM3
+		_route$map_leg$map_externalVoyageNumber0BX7BW1MA
+		_route$map_leg$map_imoNumber9705067
+		_route$map_leg$map_vessel_nameCMA CGM TIGRIS
+		_route$map_leg$map_fromPoint_location_unlocodeKRPUS
+		_route$map_leg$map_fromPoint_location_nameBusan
+		_route$map_leg$map_fromPoint_etd2020-08-16T00:00:00.000Z
+		_route$map_leg$map_toPoint_location_unlocodeGRPIR
+		_route$map_leg$map_toPoint_location_namePiraeus
+		_route$map_leg$map_toPoint_etd2020-09-27T00:00:00.000Z
+		_route$map_fnd_location_unicodeDZALG
+		_route$map_fnd_location_nameAlgiers
+		_route$map_defaultCutoff_cutoffTime2020-08-15T04:00:00.000Z
+															 */
+															
+															System.out.println("schedule_tdt:"+schedule_tdt);																
+														}
+														
+														
+														System.out.println("schedule_hd:"+schedule_hd);
+													}			
+												}
+												
+												//schedule_hd = null;
+											}
 											
 										} catch(Exception e) {
 											e.printStackTrace();
