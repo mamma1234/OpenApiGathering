@@ -1,0 +1,18 @@
+[INFO ] 2020-09-21 15:40:39.485 [main] CnediThreadApplication - Starting CnediThreadApplication on o-PC with PID 24032 (C:\egovframeworkSample\eclipse-jee-neon-2-win32-x86_64\workspace\CnediThread\target\classes started by Administrator in C:\egovframeworkSample\eclipse-jee-neon-2-win32-x86_64\workspace\CnediThread)
+[INFO ] 2020-09-21 15:40:39.515 [main] CnediThreadApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2020-09-21 15:41:11.019 [main] CnediThreadApplication - Starting CnediThreadApplication on o-PC with PID 11352 (C:\egovframeworkSample\eclipse-jee-neon-2-win32-x86_64\workspace\CnediThread\target\classes started by Administrator in C:\egovframeworkSample\eclipse-jee-neon-2-win32-x86_64\workspace\CnediThread)
+[INFO ] 2020-09-21 15:41:11.024 [main] CnediThreadApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2020-09-21 15:41:53.903 [main] CnediThreadApplication - Starting CnediThreadApplication on o-PC with PID 23448 (C:\egovframeworkSample\eclipse-jee-neon-2-win32-x86_64\workspace\CnediThread\target\classes started by Administrator in C:\egovframeworkSample\eclipse-jee-neon-2-win32-x86_64\workspace\CnediThread)
+[INFO ] 2020-09-21 15:41:53.908 [main] CnediThreadApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2020-09-21 15:42:21.879 [main] CnediThreadApplication - Starting CnediThreadApplication on o-PC with PID 35196 (C:\egovframeworkSample\eclipse-jee-neon-2-win32-x86_64\workspace\CnediThread\target\classes started by Administrator in C:\egovframeworkSample\eclipse-jee-neon-2-win32-x86_64\workspace\CnediThread)
+[INFO ] 2020-09-21 15:42:21.881 [main] CnediThreadApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2020-09-21 15:42:24.678 [main] CnediThreadApplication - Started CnediThreadApplication in 3.217 seconds (JVM running for 4.042)
+[INFO ] 2020-09-21 15:49:40.882 [main] CnediThreadApplication - Starting CnediThreadApplication on o-PC with PID 31988 (C:\egovframeworkSample\eclipse-jee-neon-2-win32-x86_64\workspace\CnediThread\target\classes started by Administrator in C:\egovframeworkSample\eclipse-jee-neon-2-win32-x86_64\workspace\CnediThread)
+[INFO ] 2020-09-21 15:49:40.886 [main] CnediThreadApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2020-09-21 15:49:44.074 [main] CnediThreadApplication - Started CnediThreadApplication in 3.628 seconds (JVM running for 4.594)
+[INFO ] 2020-09-21 15:49:54.186 [pool-2-thread-4] CnediFlowThread - HOSTNAME:null
+[INFO ] 2020-09-21 15:49:54.188 [pool-2-thread-7] CnediFlowThread - HOSTNAME:null
+[INFO ] 2020-09-21 15:49:56.458 [pool-2-thread-4] CnediFlowThread - CHARGE FLOW IMPORT SLEEP 3:49:54.183
+[INFO ] 2020-09-21 15:49:56.458 [pool-2-thread-7] CnediFlowThread - CHARGE FLOW EXPORT SLEEP 3:49:54.184
+[INFO ] 2020-09-21 15:49:56.458 [pool-2-thread-3] CnediFlowThread - CNEDI MAP OUT SLEEP 3:49:54.76
+[INFO ] 2020-09-21 15:49:56.458 [pool-2-thread-2] CnediFlowThread - CNEDI MAP IN SLEEP 3:49:54.109

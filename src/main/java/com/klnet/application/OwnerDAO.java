@@ -58,7 +58,9 @@ public class OwnerDAO extends Db1AbstractDAO{
 		callProcedure("call sp_postgresql_from_oracle3()");
 	}
 	
-	
+	public List selectOwnVslSchMSCList(){
+		return selectList("selectOwnVslSchMSCList");
+	}
 	
 //	public void selectPostgresqlFromOracle(){
 //		selectOne("selectPostgresqlFromOracle");

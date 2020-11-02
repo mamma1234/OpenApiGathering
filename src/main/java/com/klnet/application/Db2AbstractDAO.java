@@ -70,7 +70,6 @@ public class Db2AbstractDAO {
 
 	
 	/**
-	 * ?•´?‹¹ ì¿¼ë¦¬?Š” commit?„ ?ˆ˜?–‰?•œ?‹¤.
 	 * @param queryId
 	 * @param parameterObject
 	 */
@@ -79,7 +78,6 @@ public class Db2AbstractDAO {
 	}
 
 	/**
-	 * ?‹ ê·? ?Š¸?œ?­?…˜?„ ë§Œë“¤?–´ ì¿¼ë¦¬ë¥? ?ˆ˜?–‰?•œ?‹¤.
 	 * @param queryId
 	 * @param parameterObject
 	 */

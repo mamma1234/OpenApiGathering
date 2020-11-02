@@ -25,6 +25,27 @@
 	<select id="selectPostgresqlThread" resultType="string">
 		select sf_postgresql_thread()
 	</select>
+
+   <select id="selectOwnVslSchMSCList" resultType="java.util.HashMap">
+   		<![CDATA[   
+		select 
+			line_code, voyage_no, vsl_name, svc, line_vsl, 
+			start_date, start_port_code, start_port_name, 
+			end_date, end_port_code, end_port_name, pol, pod, 
+			act_voyage_no, act_vsl_name, terminal, ts_yn, 
+			insert_date, insert_user, update_date, update_user, 
+			pol_date, pod_date, ts1_port_code, ts1_port_name, 
+			ts2_port_code, ts2_port_name, ts3_port_code, ts3_port_name, 
+			doc_closing_date, cargo_closing_date 
+		from own_vsl_sch
+		where line_code ='MSC'
+		and  start_date > to_char(now(), 'yyyymmdd')
+		order by line_code, vsl_name, voyage_no, svc, start_date, start_port_code
+		]]>
+   </select>	
+	
+
+	
 <!-- 	
     <select id="selectPostgresqlFromOracle" statementType="CALLABLE">
         { call sp_postgresql_from_oracle() }

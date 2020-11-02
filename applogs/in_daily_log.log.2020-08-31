@@ -1,0 +1,12 @@
+[INFO ] 2020-08-31 11:33:55.344 [main] OpenApiGatheringApplication - Starting OpenApiGatheringApplication on o-PC with PID 111436 (C:\egovframeworkSample\eclipse-jee-neon-2-win32-x86_64\workspace\OpenApiGathering\target\classes started by Administrator in C:\egovframeworkSample\eclipse-jee-neon-2-win32-x86_64\workspace\OpenApiGathering)
+[INFO ] 2020-08-31 11:33:55.386 [main] OpenApiGatheringApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2020-08-31 11:34:44.466 [main] OpenApiGatheringApplication - Starting OpenApiGatheringApplication on o-PC with PID 111872 (C:\egovframeworkSample\eclipse-jee-neon-2-win32-x86_64\workspace\OpenApiGathering\target\classes started by Administrator in C:\egovframeworkSample\eclipse-jee-neon-2-win32-x86_64\workspace\OpenApiGathering)
+[INFO ] 2020-08-31 11:34:44.468 [main] OpenApiGatheringApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2020-08-31 11:34:47.901 [main] OpenApiGatheringApplication - Started OpenApiGatheringApplication in 3.882 seconds (JVM running for 4.636)
+[INFO ] 2020-08-31 11:34:52.680 [pool-2-thread-1] CargoSmartThread - ROUTES SCHEDULE SLEEP 11:34:48.896
+[INFO ] 2020-08-31 12:11:56.096 [main] OpenApiGatheringApplication - Starting OpenApiGatheringApplication on o-PC with PID 112292 (C:\egovframeworkSample\eclipse-jee-neon-2-win32-x86_64\workspace\CnediThread\target\classes started by Administrator in C:\egovframeworkSample\eclipse-jee-neon-2-win32-x86_64\workspace\CnediThread)
+[INFO ] 2020-08-31 12:11:56.111 [main] OpenApiGatheringApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2020-08-31 12:11:59.239 [main] OpenApiGatheringApplication - Started OpenApiGatheringApplication in 3.635 seconds (JVM running for 4.688)
+[INFO ] 2020-08-31 12:13:30.033 [main] CnediThreadApplication - Starting CnediThreadApplication on o-PC with PID 110988 (C:\egovframeworkSample\eclipse-jee-neon-2-win32-x86_64\workspace\CnediThread\target\classes started by Administrator in C:\egovframeworkSample\eclipse-jee-neon-2-win32-x86_64\workspace\CnediThread)
+[INFO ] 2020-08-31 12:13:30.035 [main] CnediThreadApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2020-08-31 12:13:32.437 [main] CnediThreadApplication - Started CnediThreadApplication in 2.864 seconds (JVM running for 3.766)

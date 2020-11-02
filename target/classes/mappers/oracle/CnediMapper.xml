@@ -1,17 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.klnet.cnedi">
+<mapper namespace="com.klnet.ebiz">
    <!-- <resultMap type="com.example.domain.DemoDTO" id="demoDTO">
       <result column="test_column" property="testColumn"/>
    </resultMap> -->
-
-
-	<select id="selectRequestCntr" resultType="string">
-		select cntr_no from CNEDI.OWN_CHARGE_REQUEST
-	</select>
- 
- 
  
 	<resultMap id="resMap" type="java.util.HashMap">
 		<result property="cargo_mt_no"  		column="cargo_mt_no" 	jdbcType="VARCHAR" />
@@ -29,11 +22,11 @@
 
 
    <select id="svcStatus" resultType="int">
-		 select MFEDI.SF_DO_MAPOUT('EBIZ-SCHEDULE', sys_context('userenv', 'host', 15)) from dual
+		 select MFEDI.SF_DO_MAPOUT('CNEDI-SCHEDULE', sys_context('userenv', 'host', 15)) from dual
    </select>  
 
    <select id="svcStatus2" resultType="int">
-		 select MFEDI.SF_DO_MAPOUT('EBIZ-SCHEDULE', #{hostname}) from dual
+		 select MFEDI.SF_DO_MAPOUT('CNEDI-SCHEDULE', #{hostname}) from dual
    </select>  
 
 
@@ -53,6 +46,15 @@
     <select id="ebizFlowThread" statementType="CALLABLE"  parameterMap="paramMap">
         { CALL MFEDI.SP_TCS_FLOW_THREAD(?, ?) }
     </select>
+	
+    <select id="ebizFlowThread2" statementType="CALLABLE"  parameterMap="paramMap">
+        { CALL MFEDI.SP_TCS_FLOW_THREAD2(?, ?) }
+    </select>
+    	
+	
+    <select id="ebizFlowThread3" statementType="CALLABLE"  parameterMap="paramMap">
+        { CALL MFEDI.SP_TCS_FLOW_THREAD3(?, ?) }
+    </select>
     	
     <select id="mapinCnediThread" statementType="CALLABLE">
         { CALL CNEDI.SP_EDI_IN_CNEDI_THREAD }
@@ -65,13 +67,22 @@
 	
 	
     <select id="chargeFlowThread" statementType="CALLABLE">
-        { CALL CNEDI.SP_EDI_IN_CNEDI_THREAD }
+        { CALL CNEDI.SP_CHARGE_FLOW_THREAD }
+    </select>    
+    <select id="chargeFlowThreadImport" statementType="CALLABLE">
+        { CALL CNEDI.SP_CHARGE_FLOW_THREAD_IMPORT }
+    </select>    
+    <select id="chargeFlowThreadExport" statementType="CALLABLE">
+        { CALL CNEDI.SP_CHARGE_FLOW_THREAD_EXPORT }
     </select>    
 
-    <select id="ownerFromMfcsFlowThread" statementType="CALLABLE">
-        { CALL CNEDI.SP_OWNER_FROM_MFCS_FLOW_THREAD }
+    <select id="ownerFromMfcsThread" statementType="CALLABLE">
+        { CALL CNEDI.SP_OWNER_FROM_MFCS_THREAD }
     </select>    
-            	
+
+    <select id="ownerFromCjCntrThread" statementType="CALLABLE">
+        { CALL CNEDI.SP_OWNER_FROM_CJ_CNTR_THREAD }
+    </select>                	
 
    <!-- <select id="getTargetCargoOpenApiAutoList" resultMap="resMap"> -->
    <select id="getTcsFlowThreadList" resultType="hashmap">
@@ -97,7 +108,177 @@
 		SET STATUS = 'Y'
 		WHERE MRN = #{mrn}
 		  AND FLOW_ID = #{flow_id}
-		]]>
+		]]> 
    </update>
+   
+
+
+   <select id="getCnEdiXmlMsgId" resultType="string">
+    	SELECT TO_CHAR (SYSDATE, 'YYYYMMDDHH24MISS') || cnedi.sf_get_idgen ('CN_EDI', 'WX', 4, '0') FROM DUAL
+   </select>  
+
+	<insert id="setScheduleMapinTbl" parameterType="java.util.HashMap">
+   		<![CDATA[  
+		INSERT INTO ONEDI.MAPIN_TBL (
+		   DOC_MSG_ID, XMLDOC_SEQ, XML_MSG_ID, 
+		   ORIGINATOR, RECIPIENT, DOC_NAME, 
+		   DOC_CODE, CUR_STATUS, TIMESTAMP) 
+		VALUES ( #{DOC_MSG_ID}, #{XMLDOC_SEQ}, #{XML_MSG_ID},
+		 #{ORIGINATOR}, 'KLKLNETDOCS', 'IFTSAI',
+		 '000', 'U', SYSDATE)
+		]]>		 	
+	</insert>
+
+
+
+	<insert id="setiftsai___hd" parameterType="java.util.HashMap">
+   		<![CDATA[  	
+		INSERT INTO ONEDI.IFTSAI__HD (
+		   XML_MSG_ID, XMLDOC_SEQ, BGM___1001, 
+		   BGM___1004, BGM___1225, DTM1372380, 
+		   FTXSIC4440, FTXZZZ4441, FTXAAI4440, 
+		   LOC88_3225, LOC88_3224, LOC7__3225, 
+		   LOC7__3224, NADCA_3039, NADCA_312A, 
+		   NADCA_312B, CTAAL_3413, CTAAL_3412, 
+		   COMTE_3148, COMFX_3148, COMEM_3148, 
+		   TIMESTAMP) 
+		VALUES ( #{XML_MSG_ID}, #{XMLDOC_SEQ}, '404',
+			#{BGM___1004}, '9', #{DTM1372380},
+			NULL, NULL, #{FTXAAI4440},
+			#{LOC88_3225}, #{LOC88_3224}, #{LOC7__3225},
+			#{LOC7__3224}, #{NADCA_3039}, #{NADCA_312A},
+			#{NADCA_312B}, #{CTAAL_3413}, NULL,
+			NULL, NULL, NULL,
+			SYSDATE )
+		]]>			
+	</insert>	   
+   
+   
+	<insert id="setiftsai__tdt" parameterType="java.util.HashMap">
+   		<![CDATA[  	
+		INSERT INTO ONEDI.IFTSAI_TDT (
+		   XML_MSG_ID, XMLDOC_SEQ, TDTDOC_SEQ, 
+		   TDT20_8028, TDT20_3127, TDT20_8213, 
+		   TDT20_8212, DTM2472380, RFFVON1154, 
+		   RFFVM_1154, RFFZZZ1154, FTXAAI444A, 
+		   FTXAAI444B, QTY99_6060, LOC9__3225, 
+		   LOC9__3224, LOC9__3223, DTM132___9, 
+		   DTM133___9, DTM178___9, DTM180___9, 
+		   DTM222___9, DTM121___9, LOC11_3225, 
+		   LOC11_3224, LOC11_3223, DTM132__11, 
+		   DTM133__11, DTM178__11, DTM180__11, 
+		   DTM222__11, DTM121__11, LOC20_3225, 
+		   LOC20_3224, LOC20_3223, DTM17_2380, 
+		   LOC12_3225, LOC12_3224, LOC13_3225, 
+		   LOC13_3224, LOC1643225, LOC1643224, 
+		   RFFMA_1154, RFFMA_1156, RFFMAI1154, 
+		   RFFMAI1156, RFFATZ1154, FTXACD4440, 
+		   TIMESTAMP) 
+		VALUES ( #{XML_MSG_ID}, #{XMLDOC_SEQ}, #{TDTDOC_SEQ},
+			#{TDT20_8028}, #{TDT20_3127}, #{TDT20_8213},
+			#{TDT20_8212}, NULL, NULL,
+			NULL, NULL, #{FTXAAI444A},
+			#{FTXAAI444B}, NULL, #{LOC9__3225},
+			#{LOC9__3224}, NULL, #{DTM132___9},
+			#{DTM133___9}, NULL, #{DTM180___9},
+			#{DTM222___9}, NULL, #{LOC11_3225},
+			#{LOC11_3224}, NULL, #{DTM132__11},
+			NULL, NULL, NULL,
+			NULL, NULL, #{LOC20_3225},
+			#{LOC20_3224}, NULL, NULL,
+			NULL, NULL, #{LOC13_3225},
+			#{LOC13_3224}, NULL, NULL,
+			NULL, NULL, NULL,
+			NULL, NULL, NULL,
+			SYSDATE )
+		]]>			
+	</insert>
+		
+	<insert id="setiftsai___hd_bak" parameterType="java.util.HashMap">
+   		<![CDATA[  	
+		INSERT INTO ONEDI.IFTSAI__HD (
+		   XML_MSG_ID, XMLDOC_SEQ, BGM___1001, 
+		   BGM___1004, BGM___1225, DTM1372380, 
+		   FTXSIC4440, FTXZZZ4441, FTXAAI4440, 
+		   LOC88_3225, LOC88_3224, LOC7__3225, 
+		   LOC7__3224, NADCA_3039, NADCA_312A, 
+		   NADCA_312B, CTAAL_3413, CTAAL_3412, 
+		   COMTE_3148, COMFX_3148, COMEM_3148, 
+		   TIMESTAMP) 
+		VALUES ( #{XML_MSG_ID}, #{XMLDOC_SEQ}, #{BGM___1001},
+			#{BGM___1004}, #{BGM___1225}, #{DTM1372380},
+			#{FTXSIC4440}, #{FTXZZZ4441}, #{FTXAAI4440},
+			#{LOC88_3225}, #{LOC88_3224}, #{LOC7__3225},
+			#{LOC7__3224}, #{NADCA_3039}, #{NADCA_312A},
+			#{NADCA_312B}, #{CTAAL_3413}, #{CTAAL_3412},
+			#{COMTE_3148}, #{COMFX_3148}, #{COMEM_3148},
+			#{TIMESTAMP} )
+		]]>			
+	</insert>	   
+   
+	<insert id="setiftsai__tdt_bak" parameterType="java.util.HashMap">
+   		<![CDATA[  	
+		INSERT INTO ONEDI.IFTSAI_TDT (
+		   XML_MSG_ID, XMLDOC_SEQ, TDTDOC_SEQ, 
+		   TDT20_8028, TDT20_3127, TDT20_8213, 
+		   TDT20_8212, DTM2472380, RFFVON1154, 
+		   RFFVM_1154, RFFZZZ1154, FTXAAI444A, 
+		   FTXAAI444B, QTY99_6060, LOC9__3225, 
+		   LOC9__3224, LOC9__3223, DTM132___9, 
+		   DTM133___9, DTM178___9, DTM180___9, 
+		   DTM222___9, DTM121___9, LOC11_3225, 
+		   LOC11_3224, LOC11_3223, DTM132__11, 
+		   DTM133__11, DTM178__11, DTM180__11, 
+		   DTM222__11, DTM121__11, LOC20_3225, 
+		   LOC20_3224, LOC20_3223, DTM17_2380, 
+		   LOC12_3225, LOC12_3224, LOC13_3225, 
+		   LOC13_3224, LOC1643225, LOC1643224, 
+		   RFFMA_1154, RFFMA_1156, RFFMAI1154, 
+		   RFFMAI1156, RFFATZ1154, FTXACD4440, 
+		   TIMESTAMP) 
+		VALUES ( #{XML_MSG_ID}, #{XMLDOC_SEQ}, #{TDTDOC_SEQ},
+			#{TDT20_8028}, #{TDT20_3127}, #{TDT20_8213},
+			#{TDT20_8212}, #{DTM2472380}, #{RFFVON1154},
+			#{RFFVM_1154}, #{RFFZZZ1154}, #{FTXAAI444A},
+			#{FTXAAI444B}, #{QTY99_6060}, #{LOC9__3225},
+			#{LOC9__3224}, #{LOC9__3223}, #{DTM132___9},
+			#{DTM133___9}, #{DTM178___9}, #{DTM180___9},
+			#{DTM222___9}, #{DTM121___9}, #{LOC11_3225},
+			#{LOC11_3224}, #{LOC11_3223}, #{DTM132__11},
+			#{DTM133__11}, #{DTM178__11}, #{DTM180__11},
+			#{DTM222__11}, #{DTM121__11}, #{LOC20_3225},
+			#{LOC20_3224}, #{LOC20_3223}, #{DTM17_2380},
+			#{LOC12_3225}, #{LOC12_3224}, #{LOC13_3225},
+			#{LOC13_3224}, #{LOC1643225}, #{LOC1643224},
+			#{RFFMA_1154}, #{RFFMA_1156}, #{RFFMAI1154},
+			#{RFFMAI1156}, #{RFFATZ1154}, #{FTXACD4440},
+			#{TIMESTAMP} )
+		]]>			
+	</insert>
+
+
+   <select id="getTrackingSrCntrList" resultType="java.util.HashMap">
+   		<![CDATA[   
+		SELECT b.XML_MSG_ID, b.XMLDOC_SEQ, b.CONT_SEQ, b.EQDCN_8260
+		FROM ONEDI.SR_HD a, ONEDI.SR_CONT b
+		WHERE a.DTM10_2380 > TO_CHAR(ADD_MONTHS(SYSDATE, -12), 'YYYYMMDD')
+		AND a.NADCA_3039 = #{NADCA_3039}
+		AND a.XML_MSG_ID = b.XML_MSG_ID
+		AND a.XMLDOC_SEQ = b.XMLDOC_SEQ
+		AND b.STATUS_CUS IS NULL
+		]]>
+   </select>
+
+
+
+   <update id="setTrackingSrCntrComplete" parameterType="java.util.HashMap">
+   		<![CDATA[     		
+		UPDATE ONEDI.SR_CONT
+		SET STATUS_CUS = 'U'
+		WHERE EQDCN_8260 = #{EQDCN_8260}
+		  AND STATUS_CUS IS NULL
+		]]> 
+   </update>
+   
    
 </mapper>
