@@ -14,5 +14,16 @@
       "type": "javax.sql.DataSource"
     }
   ],
-  "properties": []
+  "properties": [
+    {
+      "sourceType": "javax.sql.DataSource",
+      "name": "spring.db1.datasource.login-timeout",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "javax.sql.DataSource",
+      "name": "spring.db2.datasource.login-timeout",
+      "type": "java.lang.Integer"
+    }
+  ]
 }

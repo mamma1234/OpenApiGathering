@@ -282,3 +282,230 @@ Caused by: java.sql.SQLSyntaxErrorException: ORA-00904: "B"."STATUS_CUS": 부적
 [INFO ] 2020-11-02 11:27:16.359 [pool-2-thread-1] CargoSmartThread - END ROUTES SCHEDULE
 [INFO ] 2020-11-02 11:27:16.359 [pool-2-thread-1] CargoSmartThread - https://apis.cargosmart.com/openapi/cargoes/tracking/COSU?appKey=69338670-9c07-11ea-ae83-7956f3992d4c&scacCode=COSU&cntrNumber=FCIU5812619
 [INFO ] 2020-11-02 11:27:16.437 [pool-2-thread-1] CargoSmartThread - End Postgresql To Oracle:
+[INFO ] 2020-11-02 14:34:05.991 [main] CnediThreadApplication - Starting CnediThreadApplication on Parkui-MacBookPro.local with PID 77348 (/Users/mamma/git/OpenApiGathering/target/classes started by mamma in /Users/mamma/git/OpenApiGathering)
+[INFO ] 2020-11-02 14:34:05.993 [main] CnediThreadApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2020-11-02 14:34:07.179 [main] CnediThreadApplication - Started CnediThreadApplication in 1.484 seconds (JVM running for 2.372)
+[INFO ] 2020-11-02 14:34:08.184 [pool-2-thread-2] CargoSmartThread - START Postgressql To Oracle 2:34:8.182
+[INFO ] 2020-11-02 14:34:08.186 [pool-2-thread-2] CargoSmartThread - START TRACKING 2:34:8.182
+[INFO ] 2020-11-02 14:34:09.430 [pool-2-thread-2] CargoSmartThread - END ROUTES SCHEDULE
+[INFO ] 2020-11-02 14:34:09.431 [pool-2-thread-2] CargoSmartThread - End Postgresql To Oracle:
+[INFO ] 2020-11-02 15:00:28.749 [main] CnediThreadApplication - Starting CnediThreadApplication on Parkui-MacBookPro.local with PID 78155 (/Users/mamma/git/OpenApiGathering/target/classes started by mamma in /Users/mamma/git/OpenApiGathering)
+[INFO ] 2020-11-02 15:00:28.751 [main] CnediThreadApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2020-11-02 15:00:29.959 [main] CnediThreadApplication - Started CnediThreadApplication in 1.481 seconds (JVM running for 2.297)
+[INFO ] 2020-11-02 15:00:30.959 [pool-2-thread-2] CargoSmartThread - START Postgressql To Oracle 3:0:30.958
+[INFO ] 2020-11-02 15:00:30.960 [pool-2-thread-2] CargoSmartThread - START TRACKING 3:0:30.958
+[INFO ] 2020-11-02 15:00:30.962 [pool-2-thread-2] CargoSmartThread - https://apis.cargosmart.com/openapi/cargoes/tracking/COSU?appKey=69338670-9c07-11ea-ae83-7956f3992d4c&scacCode=COSU&cntrNumber=BEAU4606400
+[INFO ] 2020-11-02 15:00:32.609 [pool-2-thread-2] CargoSmartThread - END ROUTES SCHEDULE
+[INFO ] 2020-11-02 15:00:32.609 [pool-2-thread-2] CargoSmartThread - End Postgresql To Oracle:
+[INFO ] 2020-11-02 15:20:41.729 [main] CnediThreadApplication - Starting CnediThreadApplication on Parkui-MacBookPro.local with PID 78720 (/Users/mamma/git/OpenApiGathering/target/classes started by mamma in /Users/mamma/git/OpenApiGathering)
+[INFO ] 2020-11-02 15:20:41.731 [main] CnediThreadApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2020-11-02 15:20:43.018 [main] CnediThreadApplication - Started CnediThreadApplication in 1.549 seconds (JVM running for 2.368)
+[INFO ] 2020-11-02 15:20:44.022 [pool-2-thread-1] CargoSmartThread - START Postgressql To Oracle 3:20:44.20
+[INFO ] 2020-11-02 15:20:44.024 [pool-2-thread-1] CargoSmartThread - START TRACKING 3:20:44.20
+[INFO ] 2020-11-02 15:20:44.027 [pool-2-thread-1] CargoSmartThread - https://apis.cargosmart.com/openapi/cargoes/tracking/COSU?appKey=69338670-9c07-11ea-ae83-7956f3992d4c&scacCode=COSU&cntrNumber=BEAU4606400
+[INFO ] 2020-11-02 15:22:04.298 [main] CnediThreadApplication - Starting CnediThreadApplication on Parkui-MacBookPro.local with PID 78760 (/Users/mamma/git/OpenApiGathering/target/classes started by mamma in /Users/mamma/git/OpenApiGathering)
+[INFO ] 2020-11-02 15:22:04.300 [main] CnediThreadApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2020-11-02 15:22:05.626 [main] CnediThreadApplication - Started CnediThreadApplication in 1.585 seconds (JVM running for 2.248)
+[INFO ] 2020-11-02 15:22:06.626 [pool-2-thread-2] CargoSmartThread - START Postgressql To Oracle 3:22:6.624
+[INFO ] 2020-11-02 15:22:06.629 [pool-2-thread-2] CargoSmartThread - START TRACKING 3:22:6.624
+[INFO ] 2020-11-02 15:22:06.633 [pool-2-thread-2] CargoSmartThread - https://apis.cargosmart.com/openapi/cargoes/tracking/COSU?appKey=69338670-9c07-11ea-ae83-7956f3992d4c&scacCode=COSU&cntrNumber=BEAU4606400
+[INFO ] 2020-11-02 15:22:07.607 [pool-2-thread-2] CargoSmartThread - iftsta_d99b:{NADCA_039=COSU}
+[INFO ] 2020-11-02 15:22:07.607 [pool-2-thread-2] CargoSmartThread - END ROUTES SCHEDULE
+[INFO ] 2020-11-02 15:22:07.607 [pool-2-thread-2] CargoSmartThread - End Postgresql To Oracle:
+[INFO ] 2020-11-02 15:45:19.139 [main] CnediThreadApplication - Starting CnediThreadApplication on Parkui-MacBookPro.local with PID 79395 (/Users/mamma/git/OpenApiGathering/target/classes started by mamma in /Users/mamma/git/OpenApiGathering)
+[INFO ] 2020-11-02 15:45:19.141 [main] CnediThreadApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2020-11-02 15:45:20.271 [main] CnediThreadApplication - Started CnediThreadApplication in 1.386 seconds (JVM running for 2.228)
+[INFO ] 2020-11-02 15:45:21.273 [pool-2-thread-1] CargoSmartThread - START Postgressql To Oracle 3:45:21.271
+[INFO ] 2020-11-02 15:45:21.275 [pool-2-thread-1] CargoSmartThread - START TRACKING 3:45:21.271
+[INFO ] 2020-11-02 15:45:21.279 [pool-2-thread-1] CargoSmartThread - https://apis.cargosmart.com/openapi/cargoes/tracking/COSU?appKey=69338670-9c07-11ea-ae83-7956f3992d4c&scacCode=COSU&cntrNumber=BEAU4606400
+[INFO ] 2020-11-02 15:45:22.495 [pool-2-thread-1] CargoSmartThread - END ROUTES SCHEDULE
+[INFO ] 2020-11-02 15:45:22.496 [pool-2-thread-1] CargoSmartThread - End Postgresql To Oracle:
+[INFO ] 2020-11-02 15:47:21.012 [main] CnediThreadApplication - Starting CnediThreadApplication on Parkui-MacBookPro.local with PID 79458 (/Users/mamma/git/OpenApiGathering/target/classes started by mamma in /Users/mamma/git/OpenApiGathering)
+[INFO ] 2020-11-02 15:47:21.014 [main] CnediThreadApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2020-11-02 15:47:22.196 [main] CnediThreadApplication - Started CnediThreadApplication in 1.461 seconds (JVM running for 2.272)
+[INFO ] 2020-11-02 15:47:23.200 [pool-2-thread-2] CargoSmartThread - START Postgressql To Oracle 3:47:23.198
+[INFO ] 2020-11-02 15:47:23.203 [pool-2-thread-2] CargoSmartThread - START TRACKING 3:47:23.198
+[INFO ] 2020-11-02 15:47:23.208 [pool-2-thread-2] CargoSmartThread - https://apis.cargosmart.com/openapi/cargoes/tracking/COSU?appKey=69338670-9c07-11ea-ae83-7956f3992d4c&scacCode=COSU&cntrNumber=BEAU4606400
+[INFO ] 2020-11-02 15:47:24.432 [pool-2-thread-2] CargoSmartThread - _event$map_CSEvent_CSEventCode:CS277
+[INFO ] 2020-11-02 15:47:24.432 [pool-2-thread-2] CargoSmartThread - _event$map_CSEvent_CSEventCode:CS067
+[INFO ] 2020-11-02 15:47:24.432 [pool-2-thread-2] CargoSmartThread - _event$map_CSEvent_CSEventCode:CS070
+[INFO ] 2020-11-02 15:47:24.432 [pool-2-thread-2] CargoSmartThread - _event$map_CSEvent_CSEventCode:CS500
+[INFO ] 2020-11-02 15:47:24.433 [pool-2-thread-2] CargoSmartThread - _event$map_CSEvent_CSEventCode:CS060
+[INFO ] 2020-11-02 15:47:24.433 [pool-2-thread-2] CargoSmartThread - _event$map_CSEvent_CSEventCode:CS020
+[INFO ] 2020-11-02 15:47:24.433 [pool-2-thread-2] CargoSmartThread - _event$map_CSEvent_CSEventCode:CS040
+[INFO ] 2020-11-02 15:47:24.433 [pool-2-thread-2] CargoSmartThread - _event$map_CSEvent_CSEventCode:CS010
+[INFO ] 2020-11-02 15:47:24.433 [pool-2-thread-2] CargoSmartThread - END ROUTES SCHEDULE
+[INFO ] 2020-11-02 15:47:24.433 [pool-2-thread-2] CargoSmartThread - End Postgresql To Oracle:
+[INFO ] 2020-11-02 15:50:04.356 [main] CnediThreadApplication - Starting CnediThreadApplication on Parkui-MacBookPro.local with PID 79531 (/Users/mamma/git/OpenApiGathering/target/classes started by mamma in /Users/mamma/git/OpenApiGathering)
+[INFO ] 2020-11-02 15:50:04.358 [main] CnediThreadApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2020-11-02 15:50:05.500 [main] CnediThreadApplication - Started CnediThreadApplication in 1.403 seconds (JVM running for 2.222)
+[INFO ] 2020-11-02 15:50:06.506 [pool-2-thread-2] CargoSmartThread - START Postgressql To Oracle 3:50:6.505
+[INFO ] 2020-11-02 15:50:06.509 [pool-2-thread-2] CargoSmartThread - START TRACKING 3:50:6.505
+[INFO ] 2020-11-02 15:50:06.512 [pool-2-thread-2] CargoSmartThread - https://apis.cargosmart.com/openapi/cargoes/tracking/COSU?appKey=69338670-9c07-11ea-ae83-7956f3992d4c&scacCode=COSU&cntrNumber=BEAU4606400
+[INFO ] 2020-11-02 15:50:07.544 [pool-2-thread-2] CargoSmartThread - _event$map_CSEvent_CSEventCode:CS277
+[INFO ] 2020-11-02 15:50:07.545 [pool-2-thread-2] CargoSmartThread - iftsta_d99b:{NADCA_039=COSU, STS1_405=CS277}
+[INFO ] 2020-11-02 15:50:07.545 [pool-2-thread-2] CargoSmartThread - END ROUTES SCHEDULE
+[INFO ] 2020-11-02 15:50:07.545 [pool-2-thread-2] CargoSmartThread - End Postgresql To Oracle:
+[INFO ] 2020-11-02 16:00:48.683 [main] CnediThreadApplication - Starting CnediThreadApplication on Parkui-MacBookPro.local with PID 79821 (/Users/mamma/git/OpenApiGathering/target/classes started by mamma in /Users/mamma/git/OpenApiGathering)
+[INFO ] 2020-11-02 16:00:48.685 [main] CnediThreadApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2020-11-02 16:00:49.813 [main] CnediThreadApplication - Started CnediThreadApplication in 1.381 seconds (JVM running for 2.146)
+[INFO ] 2020-11-02 16:00:50.814 [pool-2-thread-1] CargoSmartThread - START Postgressql To Oracle 4:0:50.813
+[INFO ] 2020-11-02 16:00:50.816 [pool-2-thread-1] CargoSmartThread - START TRACKING 4:0:50.813
+[INFO ] 2020-11-02 16:00:50.820 [pool-2-thread-1] CargoSmartThread - https://apis.cargosmart.com/openapi/cargoes/tracking/COSU?appKey=69338670-9c07-11ea-ae83-7956f3992d4c&scacCode=COSU&cntrNumber=BEAU4606400
+[INFO ] 2020-11-02 16:00:52.015 [pool-2-thread-1] CargoSmartThread - _event$map_CSEvent_CSEventCode:CS277
+[INFO ] 2020-11-02 16:00:52.015 [pool-2-thread-1] CargoSmartThread - _value:BL
+[INFO ] 2020-11-02 16:00:52.015 [pool-2-thread-1] CargoSmartThread - _value:BKG
+[INFO ] 2020-11-02 16:00:52.016 [pool-2-thread-1] CargoSmartThread - END ROUTES SCHEDULE
+[INFO ] 2020-11-02 16:00:52.016 [pool-2-thread-1] CargoSmartThread - End Postgresql To Oracle:
+[INFO ] 2020-11-02 16:01:23.643 [main] CnediThreadApplication - Starting CnediThreadApplication on Parkui-MacBookPro.local with PID 79836 (/Users/mamma/git/OpenApiGathering/target/classes started by mamma in /Users/mamma/git/OpenApiGathering)
+[INFO ] 2020-11-02 16:01:23.644 [main] CnediThreadApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2020-11-02 16:01:24.860 [main] CnediThreadApplication - Started CnediThreadApplication in 1.475 seconds (JVM running for 2.073)
+[INFO ] 2020-11-02 16:01:25.859 [pool-2-thread-2] CargoSmartThread - START Postgressql To Oracle 4:1:25.857
+[INFO ] 2020-11-02 16:01:25.862 [pool-2-thread-2] CargoSmartThread - START TRACKING 4:1:25.857
+[INFO ] 2020-11-02 16:01:25.866 [pool-2-thread-2] CargoSmartThread - https://apis.cargosmart.com/openapi/cargoes/tracking/COSU?appKey=69338670-9c07-11ea-ae83-7956f3992d4c&scacCode=COSU&cntrNumber=BEAU4606400
+[INFO ] 2020-11-02 16:01:26.819 [pool-2-thread-2] CargoSmartThread - _event$map_CSEvent_CSEventCode:CS277
+[INFO ] 2020-11-02 16:01:26.820 [pool-2-thread-2] CargoSmartThread - _value:BL
+[INFO ] 2020-11-02 16:01:26.820 [pool-2-thread-2] CargoSmartThread - _value:BKG
+[INFO ] 2020-11-02 16:01:26.820 [pool-2-thread-2] CargoSmartThread - iftsta_d99b:{NADCA_039=COSU, STS1_405=CS277, RFFBM_154=BKG, RFFBN_154=BL, TDT_3127=COSU}
+[INFO ] 2020-11-02 16:01:26.820 [pool-2-thread-2] CargoSmartThread - END ROUTES SCHEDULE
+[INFO ] 2020-11-02 16:01:26.820 [pool-2-thread-2] CargoSmartThread - End Postgresql To Oracle:
+[INFO ] 2020-11-02 16:03:51.540 [main] CnediThreadApplication - Starting CnediThreadApplication on Parkui-MacBookPro.local with PID 79900 (/Users/mamma/git/OpenApiGathering/target/classes started by mamma in /Users/mamma/git/OpenApiGathering)
+[INFO ] 2020-11-02 16:03:51.542 [main] CnediThreadApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2020-11-02 16:03:52.642 [main] CnediThreadApplication - Started CnediThreadApplication in 1.352 seconds (JVM running for 2.147)
+[INFO ] 2020-11-02 16:03:53.644 [pool-2-thread-1] CargoSmartThread - START Postgressql To Oracle 4:3:53.642
+[INFO ] 2020-11-02 16:03:53.647 [pool-2-thread-1] CargoSmartThread - START TRACKING 4:3:53.642
+[INFO ] 2020-11-02 16:03:53.650 [pool-2-thread-1] CargoSmartThread - https://apis.cargosmart.com/openapi/cargoes/tracking/COSU?appKey=69338670-9c07-11ea-ae83-7956f3992d4c&scacCode=COSU&cntrNumber=BEAU4606400
+[INFO ] 2020-11-02 16:03:56.010 [pool-2-thread-1] CargoSmartThread - _event$map_CSEvent_CSEventCode:CS277
+[INFO ] 2020-11-02 16:03:56.011 [pool-2-thread-1] CargoSmartThread - _value:BL
+[INFO ] 2020-11-02 16:03:56.011 [pool-2-thread-1] CargoSmartThread - _value:BKG
+[INFO ] 2020-11-02 16:03:56.011 [pool-2-thread-1] CargoSmartThread - iftsta_d99b:{NADCA_039=COSU, STS1_405=CS277, RFFBM_154=6277125670, RFFBN_154=6277125670, TDT_3127=COSU}
+[INFO ] 2020-11-02 16:03:56.011 [pool-2-thread-1] CargoSmartThread - END ROUTES SCHEDULE
+[INFO ] 2020-11-02 16:03:56.011 [pool-2-thread-1] CargoSmartThread - End Postgresql To Oracle:
+[INFO ] 2020-11-02 16:16:26.051 [main] CnediThreadApplication - Starting CnediThreadApplication on Parkui-MacBookPro.local with PID 80257 (/Users/mamma/git/OpenApiGathering/target/classes started by mamma in /Users/mamma/git/OpenApiGathering)
+[INFO ] 2020-11-02 16:16:26.054 [main] CnediThreadApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2020-11-02 16:16:27.374 [main] CnediThreadApplication - Started CnediThreadApplication in 1.634 seconds (JVM running for 2.626)
+[INFO ] 2020-11-02 16:16:28.374 [pool-2-thread-1] CargoSmartThread - START Postgressql To Oracle 4:16:28.373
+[INFO ] 2020-11-02 16:16:28.375 [pool-2-thread-1] CargoSmartThread - START TRACKING 4:16:28.373
+[INFO ] 2020-11-02 16:16:28.377 [pool-2-thread-1] CargoSmartThread - https://apis.cargosmart.com/openapi/cargoes/tracking/COSU?appKey=69338670-9c07-11ea-ae83-7956f3992d4c&scacCode=COSU&cntrNumber=BEAU4606400
+[INFO ] 2020-11-02 16:16:29.785 [pool-2-thread-1] CargoSmartThread - _event$map_CSEvent_CSEventCode:CS277
+[INFO ] 2020-11-02 16:16:29.785 [pool-2-thread-1] CargoSmartThread - _value:BL
+[INFO ] 2020-11-02 16:16:29.785 [pool-2-thread-1] CargoSmartThread - _value:BKG
+[INFO ] 2020-11-02 16:16:29.785 [pool-2-thread-1] CargoSmartThread - iftsta_d99b:{EQDCN_155=, NADCA_039=COSU, STS1_405=CS277, RFFBM_154=6277125670, EQDCN_260=BEAU460640, RFFBN_154=6277125670, TDT_3127=COSU}
+[INFO ] 2020-11-02 16:16:29.785 [pool-2-thread-1] CargoSmartThread - END ROUTES SCHEDULE
+[INFO ] 2020-11-02 16:16:29.785 [pool-2-thread-1] CargoSmartThread - End Postgresql To Oracle:
+[INFO ] 2020-11-02 16:20:26.784 [main] CnediThreadApplication - Starting CnediThreadApplication on Parkui-MacBookPro.local with PID 80371 (/Users/mamma/git/OpenApiGathering/target/classes started by mamma in /Users/mamma/git/OpenApiGathering)
+[INFO ] 2020-11-02 16:20:26.786 [main] CnediThreadApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2020-11-02 16:20:28.359 [main] CnediThreadApplication - Started CnediThreadApplication in 1.915 seconds (JVM running for 2.727)
+[INFO ] 2020-11-02 16:20:29.361 [pool-2-thread-1] CargoSmartThread - START Postgressql To Oracle 4:20:29.360
+[INFO ] 2020-11-02 16:20:29.362 [pool-2-thread-1] CargoSmartThread - START TRACKING 4:20:29.360
+[INFO ] 2020-11-02 16:20:29.365 [pool-2-thread-1] CargoSmartThread - https://apis.cargosmart.com/openapi/cargoes/tracking/COSU?appKey=69338670-9c07-11ea-ae83-7956f3992d4c&scacCode=COSU&cntrNumber=BEAU4606400
+[INFO ] 2020-11-02 16:20:30.510 [pool-2-thread-1] CargoSmartThread - _event$map_CSEvent_CSEventCode:CS277
+[INFO ] 2020-11-02 16:20:30.510 [pool-2-thread-1] CargoSmartThread - _externalReference$map_CSReferenceType$map_value:BL
+[INFO ] 2020-11-02 16:20:30.510 [pool-2-thread-1] CargoSmartThread - _externalReference$map_CSReferenceType$map_value:BKG
+[INFO ] 2020-11-02 16:20:30.511 [pool-2-thread-1] CargoSmartThread - iftsta_d99b:{EQDCN_155=, NADCA_039=COSU, STS1_405=CS277, RFFBM_154=6277125670, EQDCN_260=BEAU460640, RFFBN_154=6277125670, TDT_3127=COSU}
+[INFO ] 2020-11-02 16:20:30.511 [pool-2-thread-1] CargoSmartThread - END ROUTES SCHEDULE
+[INFO ] 2020-11-02 16:20:30.511 [pool-2-thread-1] CargoSmartThread - End Postgresql To Oracle:
+[INFO ] 2020-11-02 16:22:30.516 [pool-2-thread-3] CargoSmartThread - START Postgressql To Oracle 4:22:30.516
+[INFO ] 2020-11-02 16:22:30.518 [pool-2-thread-3] CargoSmartThread - START TRACKING 4:22:30.516
+[INFO ] 2020-11-02 16:22:30.521 [pool-2-thread-3] CargoSmartThread - https://apis.cargosmart.com/openapi/cargoes/tracking/COSU?appKey=69338670-9c07-11ea-ae83-7956f3992d4c&scacCode=COSU&cntrNumber=BEAU4606400
+[INFO ] 2020-11-02 16:22:31.632 [pool-2-thread-3] CargoSmartThread - _event$map_CSEvent_CSEventCode:CS277
+[INFO ] 2020-11-02 16:22:31.632 [pool-2-thread-3] CargoSmartThread - _externalReference$map_CSReferenceType$map_value:BL
+[INFO ] 2020-11-02 16:22:31.632 [pool-2-thread-3] CargoSmartThread - _externalReference$map_CSReferenceType$map_value:BKG
+[INFO ] 2020-11-02 16:22:31.632 [pool-2-thread-3] CargoSmartThread - iftsta_d99b:{EQDCN_155=, NADCA_039=COSU, STS1_405=CS277, RFFBM_154=6277125670, EQDCN_260=BEAU460640, RFFBN_154=6277125670, TDT_3127=COSU}
+[INFO ] 2020-11-02 16:22:31.632 [pool-2-thread-3] CargoSmartThread - END ROUTES SCHEDULE
+[INFO ] 2020-11-02 16:22:31.632 [pool-2-thread-3] CargoSmartThread - End Postgresql To Oracle:
+[INFO ] 2020-11-02 16:24:31.634 [pool-2-thread-1] CargoSmartThread - START Postgressql To Oracle 4:24:31.634
+[INFO ] 2020-11-02 16:24:31.635 [pool-2-thread-1] CargoSmartThread - START TRACKING 4:24:31.634
+[INFO ] 2020-11-02 16:24:31.637 [pool-2-thread-1] CargoSmartThread - https://apis.cargosmart.com/openapi/cargoes/tracking/COSU?appKey=69338670-9c07-11ea-ae83-7956f3992d4c&scacCode=COSU&cntrNumber=BEAU4606400
+[INFO ] 2020-11-02 16:24:32.289 [pool-2-thread-1] CargoSmartThread - _event$map_CSEvent_CSEventCode:CS277
+[INFO ] 2020-11-02 16:24:32.289 [pool-2-thread-1] CargoSmartThread - _externalReference$map_CSReferenceType$map_value:BL
+[INFO ] 2020-11-02 16:24:32.289 [pool-2-thread-1] CargoSmartThread - _externalReference$map_CSReferenceType$map_value:BKG
+[INFO ] 2020-11-02 16:24:32.289 [pool-2-thread-1] CargoSmartThread - iftsta_d99b:{EQDCN_155=, NADCA_039=COSU, STS1_405=CS277, RFFBM_154=6277125670, EQDCN_260=BEAU460640, RFFBN_154=6277125670, TDT_3127=COSU}
+[INFO ] 2020-11-02 16:24:32.290 [pool-2-thread-1] CargoSmartThread - END ROUTES SCHEDULE
+[INFO ] 2020-11-02 16:24:32.290 [pool-2-thread-1] CargoSmartThread - End Postgresql To Oracle:
+[INFO ] 2020-11-02 16:33:03.406 [main] CnediThreadApplication - Starting CnediThreadApplication on Parkui-MacBookPro.local with PID 80733 (/Users/mamma/git/OpenApiGathering/target/classes started by mamma in /Users/mamma/git/OpenApiGathering)
+[INFO ] 2020-11-02 16:33:03.408 [main] CnediThreadApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2020-11-02 16:33:04.588 [main] CnediThreadApplication - Started CnediThreadApplication in 1.441 seconds (JVM running for 2.295)
+[INFO ] 2020-11-02 16:33:05.587 [pool-2-thread-2] CargoSmartThread - START Postgressql To Oracle 4:33:5.586
+[INFO ] 2020-11-02 16:33:05.588 [pool-2-thread-2] CargoSmartThread - START TRACKING 4:33:5.586
+[INFO ] 2020-11-02 16:33:05.589 [pool-2-thread-2] CargoSmartThread - https://apis.cargosmart.com/openapi/cargoes/tracking/COSU?appKey=69338670-9c07-11ea-ae83-7956f3992d4c&scacCode=COSU&cntrNumber=BEAU4606400
+[INFO ] 2020-11-02 16:33:06.680 [pool-2-thread-2] CargoSmartThread - _event$map_CSEvent_CSEventCode:CS277
+[INFO ] 2020-11-02 16:33:06.680 [pool-2-thread-2] CargoSmartThread - _externalReference$map_CSReferenceType$map_value:BL
+[INFO ] 2020-11-02 16:33:06.680 [pool-2-thread-2] CargoSmartThread - _externalReference$map_CSReferenceType$map_value:BKG
+[INFO ] 2020-11-02 16:33:06.680 [pool-2-thread-2] CargoSmartThread - iftsta_d99b:{EQDCN_155=, NADCA_039=COSU, STS1_405=CS277, RFFBM_154=6277125670, EQDCN_260=BEAU460640, RFFBN_154=6277125670, TDT_3127=COSU, TDT_8028=013}
+[INFO ] 2020-11-02 16:33:06.680 [pool-2-thread-2] CargoSmartThread - END ROUTES SCHEDULE
+[INFO ] 2020-11-02 16:33:06.680 [pool-2-thread-2] CargoSmartThread - End Postgresql To Oracle:
+[INFO ] 2020-11-02 16:44:59.597 [main] CnediThreadApplication - Starting CnediThreadApplication on Parkui-MacBookPro.local with PID 80997 (/Users/mamma/git/OpenApiGathering/target/classes started by mamma in /Users/mamma/git/OpenApiGathering)
+[INFO ] 2020-11-02 16:44:59.599 [main] CnediThreadApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2020-11-02 16:45:00.748 [main] CnediThreadApplication - Started CnediThreadApplication in 1.409 seconds (JVM running for 2.333)
+[INFO ] 2020-11-02 16:45:01.751 [pool-2-thread-2] CargoSmartThread - START Postgressql To Oracle 4:45:1.750
+[INFO ] 2020-11-02 16:45:01.752 [pool-2-thread-2] CargoSmartThread - START TRACKING 4:45:1.750
+[INFO ] 2020-11-02 16:45:01.753 [pool-2-thread-2] CargoSmartThread - https://apis.cargosmart.com/openapi/cargoes/tracking/COSU?appKey=69338670-9c07-11ea-ae83-7956f3992d4c&scacCode=COSU&cntrNumber=BEAU4606400
+[INFO ] 2020-11-02 16:45:03.447 [pool-2-thread-2] CargoSmartThread - _event$map_CSEvent_CSEventCode:CS277
+[INFO ] 2020-11-02 16:45:03.447 [pool-2-thread-2] CargoSmartThread - _externalReference$map_CSReferenceType$map_value:BL
+[INFO ] 2020-11-02 16:45:03.447 [pool-2-thread-2] CargoSmartThread - _externalReference$map_CSReferenceType$map_value:BKG
+[INFO ] 2020-11-02 16:45:03.447 [pool-2-thread-2] CargoSmartThread - iftsta_d99b:{TDT_8212=COSCO SHIPPING LIBRA, TDT_8213=VRRV4, LOC9_3224=Hamburg, NADCA_039=COSU, RFFBN_154=6277125670, TDT_3127=COSU, TDT_8028=013, EQDCN_155=, STS1_405=CS277, RFFBM_154=6277125670, EQDCN_260=BEAU460640, LOC11_3224=Qingdao, LOC11_3225=}
+[INFO ] 2020-11-02 16:45:03.447 [pool-2-thread-2] CargoSmartThread - END ROUTES SCHEDULE
+[INFO ] 2020-11-02 16:45:03.447 [pool-2-thread-2] CargoSmartThread - End Postgresql To Oracle:
+[INFO ] 2020-11-02 17:03:18.536 [main] CnediThreadApplication - Starting CnediThreadApplication on Parkui-MacBookPro.local with PID 81416 (/Users/mamma/git/OpenApiGathering/target/classes started by mamma in /Users/mamma/git/OpenApiGathering)
+[INFO ] 2020-11-02 17:03:18.538 [main] CnediThreadApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2020-11-02 17:03:19.771 [main] CnediThreadApplication - Started CnediThreadApplication in 1.493 seconds (JVM running for 2.376)
+[INFO ] 2020-11-02 17:03:20.775 [pool-2-thread-1] CargoSmartThread - START Postgressql To Oracle 5:3:20.773
+[INFO ] 2020-11-02 17:03:20.776 [pool-2-thread-1] CargoSmartThread - START TRACKING 5:3:20.773
+[INFO ] 2020-11-02 17:03:20.778 [pool-2-thread-1] CargoSmartThread - https://apis.cargosmart.com/openapi/cargoes/tracking/COSU?appKey=69338670-9c07-11ea-ae83-7956f3992d4c&scacCode=COSU&cntrNumber=BEAU4606400
+[INFO ] 2020-11-02 17:03:21.921 [pool-2-thread-1] CargoSmartThread - _event$map_CSEvent_CSEventCode:CS277
+[INFO ] 2020-11-02 17:03:21.921 [pool-2-thread-1] CargoSmartThread - _externalReference$map_CSReferenceType$map_value:BL
+[INFO ] 2020-11-02 17:03:21.921 [pool-2-thread-1] CargoSmartThread - _externalReference$map_CSReferenceType$map_value:BKG
+[INFO ] 2020-11-02 17:03:21.921 [pool-2-thread-1] CargoSmartThread - iftsta_d99b:{TDT_8212=COSCO SHIPPING LIBRA, TDT_8213=VRRV4, LOC9_3224=Hamburg, NADCA_039=COSU, RFFBN_154=6277125670, TDT_3127=COSU, LOC9_3225=DEHAM, TDT_8028=013, EQDCN_155=, STS1_405=CS277, RFFBM_154=6277125670, EQDCN_260=BEAU460640, LOC11_3224=Qingdao, LOC11_3225=}
+[INFO ] 2020-11-02 17:03:21.921 [pool-2-thread-1] CargoSmartThread - END ROUTES SCHEDULE
+[INFO ] 2020-11-02 17:03:21.921 [pool-2-thread-1] CargoSmartThread - End Postgresql To Oracle:
+[INFO ] 2020-11-02 17:23:40.155 [main] CnediThreadApplication - Starting CnediThreadApplication on Parkui-MacBookPro.local with PID 81851 (/Users/mamma/git/OpenApiGathering/target/classes started by mamma in /Users/mamma/git/OpenApiGathering)
+[INFO ] 2020-11-02 17:23:40.157 [main] CnediThreadApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2020-11-02 17:23:41.361 [main] CnediThreadApplication - Started CnediThreadApplication in 1.472 seconds (JVM running for 2.31)
+[INFO ] 2020-11-02 17:23:42.367 [pool-2-thread-1] CargoSmartThread - START Postgressql To Oracle 5:23:42.366
+[INFO ] 2020-11-02 17:23:42.370 [pool-2-thread-1] CargoSmartThread - START TRACKING 5:23:42.366
+[INFO ] 2020-11-02 17:23:42.373 [pool-2-thread-1] CargoSmartThread - https://apis.cargosmart.com/openapi/cargoes/tracking/COSU?appKey=69338670-9c07-11ea-ae83-7956f3992d4c&scacCode=COSU&cntrNumber=BEAU4606400
+[INFO ] 2020-11-02 17:23:43.383 [pool-2-thread-1] CargoSmartThread - _event$map_eventDT$map_GMT$map_timeInMillis:1605700800000
+[INFO ] 2020-11-02 17:23:43.383 [pool-2-thread-1] CargoSmartThread - _event$map_CSEvent_CSEventCode:CS277
+[INFO ] 2020-11-02 17:23:43.383 [pool-2-thread-1] CargoSmartThread - _externalReference$map_CSReferenceType$map_value:BL
+[INFO ] 2020-11-02 17:23:43.384 [pool-2-thread-1] CargoSmartThread - _externalReference$map_CSReferenceType$map_value:BKG
+[INFO ] 2020-11-02 17:23:43.384 [pool-2-thread-1] CargoSmartThread - iftsta_d99b:{TDT_8212=COSCO SHIPPING LIBRA, TDT_8213=VRRV4, LOC9_3224=Hamburg, NADCA_039=COSU, RFFBN_154=6277125670, TDT_3127=COSU, LOC9_3225=DEHAM, TDT_8028=013, EQDCN_155=, STS1_405=CS277, RFFBM_154=6277125670, EQDCN_260=BEAU460640, LOC11_3224=Qingdao, LOC11_3225=}
+[INFO ] 2020-11-02 17:23:43.384 [pool-2-thread-1] CargoSmartThread - END ROUTES SCHEDULE
+[INFO ] 2020-11-02 17:23:43.384 [pool-2-thread-1] CargoSmartThread - End Postgresql To Oracle:
+[INFO ] 2020-11-02 17:26:30.186 [main] CnediThreadApplication - Starting CnediThreadApplication on Parkui-MacBookPro.local with PID 81916 (/Users/mamma/git/OpenApiGathering/target/classes started by mamma in /Users/mamma/git/OpenApiGathering)
+[INFO ] 2020-11-02 17:26:30.188 [main] CnediThreadApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2020-11-02 17:26:31.397 [main] CnediThreadApplication - Started CnediThreadApplication in 1.474 seconds (JVM running for 2.139)
+[INFO ] 2020-11-02 17:26:32.400 [pool-2-thread-2] CargoSmartThread - START Postgressql To Oracle 5:26:32.398
+[INFO ] 2020-11-02 17:26:32.402 [pool-2-thread-2] CargoSmartThread - START TRACKING 5:26:32.398
+[INFO ] 2020-11-02 17:26:32.404 [pool-2-thread-2] CargoSmartThread - https://apis.cargosmart.com/openapi/cargoes/tracking/COSU?appKey=69338670-9c07-11ea-ae83-7956f3992d4c&scacCode=COSU&cntrNumber=BEAU4606400
+[INFO ] 2020-11-02 17:26:33.422 [pool-2-thread-2] CargoSmartThread - _event$map_eventDT$map_GMT$map_timeInMillis:1605700800000
+[INFO ] 2020-11-02 17:26:33.423 [pool-2-thread-2] CargoSmartThread - _event$map_CSEvent_CSEventCode:CS277
+[INFO ] 2020-11-02 17:26:33.423 [pool-2-thread-2] CargoSmartThread - _externalReference$map_CSReferenceType$map_value:BL
+[INFO ] 2020-11-02 17:26:33.423 [pool-2-thread-2] CargoSmartThread - _externalReference$map_CSReferenceType$map_value:BKG
+[INFO ] 2020-11-02 17:26:33.423 [pool-2-thread-2] CargoSmartThread - iftsta_d99b:{TDT_8212=COSCO SHIPPING LIBRA, TDT_8213=VRRV4, LOC9_3224=Hamburg, NADCA_039=COSU, RFFBN_154=6277125670, TDT_3127=COSU, LOC9_3225=DEHAM, TDT_8028=013, EQDCN_155=, STS1_405=CS277, RFFBM_154=6277125670, EQDCN_260=BEAU460640, LOC11_3224=Qingdao, LOC11_3225=CNTAO}
+[INFO ] 2020-11-02 17:26:33.423 [pool-2-thread-2] CargoSmartThread - END ROUTES SCHEDULE
+[INFO ] 2020-11-02 17:26:33.423 [pool-2-thread-2] CargoSmartThread - End Postgresql To Oracle:
+[INFO ] 2020-11-02 17:33:58.393 [main] CnediThreadApplication - Starting CnediThreadApplication on Parkui-MacBookPro.local with PID 82076 (/Users/mamma/git/OpenApiGathering/target/classes started by mamma in /Users/mamma/git/OpenApiGathering)
+[INFO ] 2020-11-02 17:33:58.395 [main] CnediThreadApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2020-11-02 17:33:59.541 [main] CnediThreadApplication - Started CnediThreadApplication in 1.406 seconds (JVM running for 2.315)
+[INFO ] 2020-11-02 17:34:00.540 [pool-2-thread-1] CargoSmartThread - START Postgressql To Oracle 5:34:0.540
+[INFO ] 2020-11-02 17:34:00.542 [pool-2-thread-1] CargoSmartThread - START TRACKING 5:34:0.540
+[INFO ] 2020-11-02 17:34:00.544 [pool-2-thread-1] CargoSmartThread - https://apis.cargosmart.com/openapi/cargoes/tracking/COSU?appKey=69338670-9c07-11ea-ae83-7956f3992d4c&scacCode=COSU&cntrNumber=BEAU4606400
+[INFO ] 2020-11-02 17:34:02.162 [pool-2-thread-1] CargoSmartThread - _event$map_eventDT$map_GMT$map_timeInMillis:1605700800000
+[INFO ] 2020-11-02 17:34:02.163 [pool-2-thread-1] CargoSmartThread - _event$map_CSEvent_CSEventCode:CS277
+[INFO ] 2020-11-02 17:34:02.163 [pool-2-thread-1] CargoSmartThread - _externalReference$map_CSReferenceType$map_value:BL
+[INFO ] 2020-11-02 17:34:02.163 [pool-2-thread-1] CargoSmartThread - _externalReference$map_CSReferenceType$map_value:BKG
+[INFO ] 2020-11-02 17:34:02.163 [pool-2-thread-1] CargoSmartThread - iftsta_d99b:{TDT_8212=COSCO SHIPPING LIBRA, TDT_8213=VRRV4, LOC9_3224=Hamburg, NADCA_039=COSU, RFFBN_154=6277125670, TDT_3127=COSU, LOC9_3225=DEHAM, TDT_8028=013, EQDCN_155=, STS1_405=CS277, RFFBM_154=6277125670, EQDCN_260=BEAU460640, DTM132_11=1605700800000, LOC11_3224=Qingdao, LOC11_3225=CNTAO}
+[INFO ] 2020-11-02 17:34:02.163 [pool-2-thread-1] CargoSmartThread - END ROUTES SCHEDULE
+[INFO ] 2020-11-02 17:34:02.163 [pool-2-thread-1] CargoSmartThread - End Postgresql To Oracle:
+[INFO ] 2020-11-02 17:35:17.510 [main] CnediThreadApplication - Starting CnediThreadApplication on Parkui-MacBookPro.local with PID 82106 (/Users/mamma/git/OpenApiGathering/target/classes started by mamma in /Users/mamma/git/OpenApiGathering)
+[INFO ] 2020-11-02 17:35:17.511 [main] CnediThreadApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2020-11-02 17:35:18.647 [main] CnediThreadApplication - Started CnediThreadApplication in 1.399 seconds (JVM running for 2.101)
+[INFO ] 2020-11-02 17:35:19.649 [pool-2-thread-2] CargoSmartThread - START Postgressql To Oracle 5:35:19.649
+[INFO ] 2020-11-02 17:35:19.650 [pool-2-thread-2] CargoSmartThread - START TRACKING 5:35:19.649
+[INFO ] 2020-11-02 17:35:19.652 [pool-2-thread-2] CargoSmartThread - https://apis.cargosmart.com/openapi/cargoes/tracking/COSU?appKey=69338670-9c07-11ea-ae83-7956f3992d4c&scacCode=COSU&cntrNumber=BEAU4606400
+[INFO ] 2020-11-02 17:35:20.993 [pool-2-thread-2] CargoSmartThread - _event$map_eventDT$map_GMT$map_timeInMillis:1605700800000
+[INFO ] 2020-11-02 17:35:20.994 [pool-2-thread-2] CargoSmartThread - _event$map_CSEvent_CSEventCode:CS277
+[INFO ] 2020-11-02 17:35:20.994 [pool-2-thread-2] CargoSmartThread - iftsta_d99b:{TDT_8212=COSCO SHIPPING LIBRA, TDT_8213=VRRV4, LOC9_3224=Hamburg, NADCA_039=COSU, RFFBN_154=6277125670, TDT_3127=COSU, LOC9_3225=DEHAM, TDT_8028=013, EQDCN_155=, STS1_405=CS277, RFFBM_154=6277125670, EQDCN_260=BEAU460640, DTM132_11=1605700800000, LOC11_3224=Qingdao, LOC11_3225=CNTAO}
+[INFO ] 2020-11-02 17:35:20.994 [pool-2-thread-2] CargoSmartThread - END ROUTES SCHEDULE
+[INFO ] 2020-11-02 17:35:20.994 [pool-2-thread-2] CargoSmartThread - End Postgresql To Oracle:
